@@ -19,15 +19,15 @@ const Claims=require('./models/claims.model.js');
 
 // ROUTES
 // route for login
-app.use('/api/login');
+app.use('/api/login',loginRoute);
 // route for employee
-app.use('/api/employee');
+app.use('/api/employee',employeeRoute);
 // route for manager
-app.use('/api/manager');
+app.use('/api/manager',managerRoute);
 // route for financeteamuser
-app.use('/api/financeteamuser');
+app.use('/api/financeteamuser',financeteamuserRoute);
 // route for system admininstrator
-app.use('/api/systemadministrator');
+app.use('/api/systemadministrator',systemadminRoute);
 
 // this is middleware: what format this page can take in requests
 app.use(express.json());
@@ -46,8 +46,13 @@ app.use(cors({
 app.get('/api/login/username-password',loginRoute);
 // SYSTEM ADMINISTRATOR page
 app.get('/api/SystemAdmin/username-password',systemadminRoute);
+
 // EMPLOYEE PAGE
-app.get('/api/employee/username-password',employeeRoute);
+// get all claims
+app.get('/api/employee/:username/:password',employeeRoute);
+// make claim
+app.post('/api/employee/:username/:password',employeeRoute);
+
 // MANAGER page
 app.get('/api/manager/username-password',managerRoute);
 //FINANCE TEAM USER page

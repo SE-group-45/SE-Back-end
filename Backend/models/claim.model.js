@@ -1,7 +1,11 @@
 const mongoose = require("mongoose");
 
 const ClaimSchema = mongoose.Schema({
-    ClaimID: {
+    ClaimHolderID: {
+        type: String,
+        required: true,
+    },
+    ClaimHolderName:{
         type: String,
         required: true,
     },

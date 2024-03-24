@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const AccountSchema = mongoose.Schema({
+    // set by system admin not the default set by database.
     UserID:{
         type: String,
         required: [true]
