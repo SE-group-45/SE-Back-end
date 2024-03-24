@@ -55,7 +55,7 @@ function App() {
 
   // check if user is sughned in
   // if not display login page
-  if (Signedin) {
+  if (!Signedin) {
     return (
       <>
         {/* LOGIN PAGE */}
