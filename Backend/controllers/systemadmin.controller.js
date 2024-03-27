@@ -2,7 +2,46 @@ const Account = require('../models/account.model.js');
 const Claim = require('../models/claim.model.js');
 
 
+const ViewAllClaims = async (req, res) => {
+    try {
+        const claims = await Claim.find();
+        res.status(200).json(claims);
+    } catch (err) {
+        res.status(500).json({ message: "An error occurred while retrieving claims" });
+    }
+};
 
+const ViewAllAccounts = async (req, res) => {
+    try {
+        const accounts = await Account.find();
+        res.status(200).json(accounts);
+    } catch (err) {
+        res.status(500).json({ message: "An error occurred while retrieving accounts" });
+    }
+};
+
+const SearchAccount = async (req, res) => {
+    try {
+        const { UserID } = req.body;
+        const account = await Account.findById(UserID);
+        if (!account) {
+            return res.status(404).json({ message: "Account not found" });
+        }
+        res.status(200).json(account);
+    } catch (err) {
+        res.status(500).json({ message: "An error occurred while searching for the account" });
+    }
+};
+
+const SearchClaims = async (req, res) => {
+    try {
+        const { UserID } = req.body;
+        const claims = await Claim.find({ UserID });
+        res.status(200).json(claims);
+    } catch (err) {
+        res.status(500).json({ message: "An error occurred while searching for the claims" });
+    }
+};
 
 const CreateAccount = async (req, res) => {
     try {
@@ -101,6 +140,8 @@ module.exports = {
     CreateAccount,
     ViewAllClaims,
     ViewAllAccounts,
+    SearchAccount,
+    SearchClaims,
     ChangeAccountState,
     ChangePassword,
     ChangeExpiry,
