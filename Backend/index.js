@@ -26,32 +26,29 @@ app.use('/api/employee',employeeRoute);
 app.use('/api/manager',managerRoute);
 // route for financeteamuser
 app.use('/api/financeteamuser',financeteamuserRoute);
-// route for system admininstrator
-app.use('/api/systemadministrator',systemadminRoute);
 
-// this is middleware: what format this page can take in requests
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-
-// connect this to your local host that is running the front end react file
-app.use(cors({
-    origin: 'http://localhost:5173' // Replace with your React front end origin
-  }));
-
-// when the user signs in we need to have the api call contain the account username and password- security
-// for the input is required to have the input username and password
-// all calls below are strictly example operations and the names you can change to whatever you wish
-// ALL APIs FOR:
-// Login page
-app.get('/api/login/username-password',loginRoute);
-// SYSTEM ADMINISTRATOR page
-app.get('/api/SystemAdmin/username-password',systemadminRoute);
-
-// EMPLOYEE PAGE
+// route for system administrator
+//
+// get all accounts
+app.get('/api/systemadministrator/username-password/accounts', systemadminRoute);
+// create an account
+app.post('/api/systemadministrator/username-password/accounts', systemadminRoute);
+// get a specific account by ID
+app.get('/api/systemadministrator/username-password/accounts/:id', systemadminRoute);
+// update an account by ID
+app.put('/api/systemadministrator/username-password/accounts/:id', systemadminRoute);
+// delete an account by ID
+app.delete('/api/systemadministrator/username-password/accounts/:id', systemadminRoute);
+//
 // get all claims
-app.get('/api/employee/:username/:password',employeeRoute);
-// make claim
-app.post('/api/employee/:username/:password',employeeRoute);
+app.get('/api/systemadministrator/username-password/claims', systemadminRoute);
+// get a specific claim by ID
+app.get('/api/systemadministrator/username-password/claims/:id', systemadminRoute);
+// update a claim by ID
+app.put('/api/systemadministrator/username-password/claims/:id', systemadminRoute);
+// delete a claim by ID
+app.delete('/api/systemadministrator/username-password/claims/:id', systemadminRoute);
+
 
 // MANAGER page
 app.get('/api/manager/username-password',managerRoute);

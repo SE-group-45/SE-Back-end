@@ -2,7 +2,7 @@ const Account = require('../models/account.model.js');
 const Claim = require('../models/claim.model.js');
 
 
-const ViewAllClaims = async (req, res) => {
+const GetAllClaims = async (req, res) => {
     try {
         const claims = await Claim.find();
         res.status(200).json(claims);
@@ -11,7 +11,7 @@ const ViewAllClaims = async (req, res) => {
     }
 };
 
-const ViewAllAccounts = async (req, res) => {
+const GetAllAccounts = async (req, res) => {
     try {
         const accounts = await Account.find();
         res.status(200).json(accounts);
@@ -20,7 +20,7 @@ const ViewAllAccounts = async (req, res) => {
     }
 };
 
-const SearchAccount = async (req, res) => {
+const GetAccount = async (req, res) => {
     try {
         const { UserID } = req.body;
         const account = await Account.findById(UserID);
@@ -33,7 +33,7 @@ const SearchAccount = async (req, res) => {
     }
 };
 
-const SearchClaims = async (req, res) => {
+const GetClaims = async (req, res) => {
     try {
         const { UserID } = req.body;
         const claims = await Claim.find({ UserID });
@@ -60,7 +60,18 @@ const CreateAccount = async (req, res) => {
         res.status(500).json({ message: "An error occured trying to create the account" });
     }
 };
-
+const DeleteAccount = async (req, res) => {
+    try {
+        const { UserID } = req.body;
+        const deletedAccount = await Account.findByIdAndDelete(UserID);
+        if (!deletedAccount) {
+            return res.status(404).json({ message: "Account not found" });
+        }
+        res.status(200).json({ message: "Account deleted successfully" });
+    } catch (err) {
+        res.status(500).json({ message: "An error occurred while deleting the account" });
+    }
+};
 const ChangeAccountState = async (req, res) => {
     try {
         const { UserID, newState } = req.body;
@@ -138,13 +149,14 @@ const ChangeDepartmentID = async (req, res) => {
 
 module.exports = {
     CreateAccount,
-    ViewAllClaims,
-    ViewAllAccounts,
-    SearchAccount,
-    SearchClaims,
+    GetAllClaims,
+    GetAllAccounts,
+    GetAccount,
+    GetClaims,
     ChangeAccountState,
     ChangePassword,
     ChangeExpiry,
     ChangeUserType,
-    ChangeDepartmentID
+    ChangeDepartmentID,
+    DeleteAccount
 };
