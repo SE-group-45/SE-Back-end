@@ -38,6 +38,6 @@ const ClaimSchema = mongoose.Schema({
 })
 
 
-const Product = mongoose.model('Accounts', AccountSchema);
+const Claims = mongoose.model('Claims', ClaimSchema);
 
 module.exports = Claims;

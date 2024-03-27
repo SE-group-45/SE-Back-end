@@ -15,7 +15,7 @@ const loginRoute = require('./routes/login.route.js');
 // schema for account
 const Account=require('./models/account.model.js');
 // schema for claim
-const Claims=require('./models/claims.model.js');
+const Claims=require('./models/claim.model.js');
 
 // ROUTES
 // route for login
@@ -43,9 +43,47 @@ app.use(cors({
 // all calls below are strictly example operations and the names you can change to whatever you wish
 // ALL APIs FOR:
 // Login page
-app.get('/api/login/username-password',loginRoute);
+app.get('/api/login/:username/:password',loginRoute);
+
+
+
+
 // SYSTEM ADMINISTRATOR page
-app.get('/api/SystemAdmin/username-password',systemadminRoute);
+//
+// get all accounts
+app.get('/api/systemadministrator/:accounts', systemadminRoute);
+// create an account
+app.post('/api/systemadministrator/:accounts', systemadminRoute);
+// get a specific account by ID
+app.get('/api/systemadministrator/:accounts/:id', systemadminRoute);
+// update an account by ID
+app.put('/api/systemadministrator/:accounts/:id', systemadminRoute);
+// delete an account by ID
+app.delete('/api/systemadministrator/:accounts/:id', systemadminRoute);
+//
+// get all claims
+app.get('/api/systemadministrator/:claims', systemadminRoute);
+// get a specific claim by ID
+app.get('/api/systemadministrator/:claims/:id', systemadminRoute);
+// update a claim by ID
+app.put('/api/systemadministrator/:claims/:id', systemadminRoute);
+// delete a claim by ID
+app.delete('/api/systemadministrator/:claims/:id', systemadminRoute);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // EMPLOYEE PAGE
 // get all claims
@@ -54,9 +92,9 @@ app.get('/api/employee/:username/:password',employeeRoute);
 app.post('/api/employee/:username/:password',employeeRoute);
 
 // MANAGER page
-app.get('/api/manager/username-password',managerRoute);
+app.get('/api/manager/:username/:password',managerRoute);
 //FINANCE TEAM USER page
-app.get('/api/financeteamuser/username-password',financeteamuserRoute);
+app.get('/api/financeteamuser/:username/:password',financeteamuserRoute);
 // NOTE:when creating requests make sure that the username and password are required for every request by default - sequrity
 
 
