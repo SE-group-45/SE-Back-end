@@ -21,7 +21,7 @@ const ClaimSchema = mongoose.Schema({
     ClaimState: {
         type:String,
         required: true,
-        default:'Active'
+        default:'Pending'
     },
     DepartmentID: {
         type:'String',
