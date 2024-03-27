@@ -37,29 +37,73 @@ const ChangeAccountState = async (req, res) => {
     }
 };
 
-const ViewAllClaims = async (req, res) => {
+const ChangePassword = async (req, res) => {
     try {
-        const claims = await Claim.find();
-        res.status(200).json(claims);
+        const { UserID, newPassword } = req.body;
+        const account = await Account.findById(UserID);
+        if (!account) {
+            return res.status(404).json({ message: "Account not found" });
+        }
+        account.Password = newPassword;
+        const updatedAccount = await account.save();
+        res.status(200).json(updatedAccount);
     } catch (err) {
-        res.status(500).json({ message: "An error occurred while retrieving claims" });
-    }
-};
-const ViewAllAccounts = async (req, res) => {
-    try {
-        const accounts = await Account.find();
-        res.status(200).json(accounts);
-    } catch (err) {
-        res.status(500).json({ message: "An error occurred while retrieving accounts" });
+        res.status(500).json({ message: "An error occurred while changing Password" });
     }
 };
 
+const ChangeExpiry = async (req, res) => {
+    try {
+        const { UserID, newExpiry } = req.body;
+        const account = await Account.findById(UserID);
+        if (!account) {
+            return res.status(404).json({ message: "Account not found" });
+        }
+        account.Expiry = newExpiry;
+        const updatedAccount = await account.save();
+        res.status(200).json(updatedAccount);
+    } catch (err) {
+        res.status(500).json({ message: "An error occurred while changing Expiry" });
+    }
+};
 
-// enter the function names here
+const ChangeUserType = async (req, res) => {
+    try {
+        const { UserID, newUserType } = req.body;
+        const account = await Account.findById(UserID);
+        if (!account) {
+            return res.status(404).json({ message: "Account not found" });
+        }
+        account.UserType = newUserType;
+        const updatedAccount = await account.save();
+        res.status(200).json(updatedAccount);
+    } catch (err) {
+        res.status(500).json({ message: "An error occurred while changing UserType" });
+    }
+};
+
+const ChangeDepartmentID = async (req, res) => {
+    try {
+        const { UserID, newDepartmentID } = req.body;
+        const account = await Account.findById(UserID);
+        if (!account) {
+            return res.status(404).json({ message: "Account not found" });
+        }
+        account.DepartmentID = newDepartmentID;
+        const updatedAccount = await account.save();
+        res.status(200).json(updatedAccount);
+    } catch (err) {
+        res.status(500).json({ message: "An error occurred while changing DepartmentID" });
+    }
+};
+
 module.exports = {
-    // change this
     CreateAccount,
     ViewAllClaims,
     ViewAllAccounts,
-    ChangeAccountState
-}
+    ChangeAccountState,
+    ChangePassword,
+    ChangeExpiry,
+    ChangeUserType,
+    ChangeDepartmentID
+};
