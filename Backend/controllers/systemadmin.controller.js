@@ -22,8 +22,8 @@ const GetAllAccounts = async (req, res) => {
 
 const GetAccount = async (req, res) => {
     try {
-        const { UserID } = req.body;
-        const account = await Account.findById(UserID);
+        console.log(req.body);
+        const account = await Account.findById(req.body);
         if (!account) {
             return res.status(404).json({ message: "Account not found" });
         }
@@ -35,8 +35,8 @@ const GetAccount = async (req, res) => {
 
 const GetClaims = async (req, res) => {
     try {
-        const { UserID } = req.body;
-        const claims = await Claim.find({ UserID });
+        console.log(req.body);
+        const claims = await Claim.find(req.body);
         res.status(200).json(claims);
     } catch (err) {
         res.status(500).json({ message: "An error occurred while searching for the claims" });
@@ -45,25 +45,18 @@ const GetClaims = async (req, res) => {
 
 const CreateAccount = async (req, res) => {
     try {
-        const { UserID, Password, Expiry, UserType, AccountState, DepartmentID } = req.body;
-        const account = new Account({
-            UserID,
-            Password,
-            Expiry, 
-            UserType, 
-            AccountState, 
-            DepartmentID
-        });
-        const savedAccount = await account.save();
+        console.log(req.body);
+        const savedAccount = await Account.create(req.body);
         res.status(201).json(savedAccount);
     } catch (err) {
         res.status(500).json({ message: "An error occured trying to create the account" });
     }
 };
+
 const DeleteAccount = async (req, res) => {
     try {
-        const { UserID } = req.body;
-        const deletedAccount = await Account.findByIdAndDelete(UserID);
+        console.log(req.body);
+        const deletedAccount = await Account.findByIdAndDelete(req.body);
         if (!deletedAccount) {
             return res.status(404).json({ message: "Account not found" });
         }
@@ -72,9 +65,10 @@ const DeleteAccount = async (req, res) => {
         res.status(500).json({ message: "An error occurred while deleting the account" });
     }
 };
+
 const ChangeAccountState = async (req, res) => {
     try {
-        const { UserID, newState } = req.body;
+        const { UserID, newState } = console.log(req.body);;
         const account = await Account.findById(UserID);
         if (!account) {
             return res.status(404).json({ message: "Account not found" });
@@ -89,7 +83,7 @@ const ChangeAccountState = async (req, res) => {
 
 const ChangePassword = async (req, res) => {
     try {
-        const { UserID, newPassword } = req.body;
+        const { UserID, newPassword } = console.log(req.body);;
         const account = await Account.findById(UserID);
         if (!account) {
             return res.status(404).json({ message: "Account not found" });

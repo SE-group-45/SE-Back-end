@@ -30,24 +30,24 @@ app.use('/api/financeteamuser',financeteamuserRoute);
 // route for system administrator
 //
 // get all accounts
-app.get('/api/systemadministrator/username-password/accounts', systemadminRoute);
+app.get('/api/systemadministrator/:username/:password', systemadminRoute);
 // create an account
-app.post('/api/systemadministrator/username-password/accounts', systemadminRoute);
+app.post('/api/systemadministrator/:username/:password', systemadminRoute);
 // get a specific account by ID
-app.get('/api/systemadministrator/username-password/accounts/:id', systemadminRoute);
+app.get('/api/systemadministrator/:username/:password', systemadminRoute);
 // update an account by ID
-app.put('/api/systemadministrator/username-password/accounts/:id', systemadminRoute);
+app.put('/api/systemadministrator/:username/:password', systemadminRoute);
 // delete an account by ID
-app.delete('/api/systemadministrator/username-password/accounts/:id', systemadminRoute);
+app.delete('/api/systemadministrator/:username/:password', systemadminRoute);
 //
 // get all claims
-app.get('/api/systemadministrator/username-password/claims', systemadminRoute);
+app.get('/api/systemadministrator/:username/:password', systemadminRoute);
 // get a specific claim by ID
-app.get('/api/systemadministrator/username-password/claims/:id', systemadminRoute);
+app.get('/api/systemadministrator/:username/:password', systemadminRoute);
 // update a claim by ID
-app.put('/api/systemadministrator/username-password/claims/:id', systemadminRoute);
+app.put('/api/systemadministrator/:username/:password', systemadminRoute);
 // delete a claim by ID
-app.delete('/api/systemadministrator/username-password/claims/:id', systemadminRoute);
+app.delete('/api/systemadministrator/:username/:password', systemadminRoute);
 
 
 // MANAGER page
