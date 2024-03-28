@@ -4,7 +4,7 @@ const Claim = require('../models/claim.model.js');
 
 const GetAllClaims = async (req, res) => {
     try {
-        const claims = await Claim.find();
+        const claims = await Claim.find({});
         res.status(200).json(claims);
     } catch (err) {
         res.status(500).json({ message: "An error occurred while retrieving claims" });
@@ -13,7 +13,7 @@ const GetAllClaims = async (req, res) => {
 
 const GetAllAccounts = async (req, res) => {
     try {
-        const accounts = await Account.find();
+        const accounts = await Account.find({});
         res.status(200).json(accounts);
     } catch (err) {
         res.status(500).json({ message: "An error occurred while retrieving accounts" });
@@ -22,21 +22,18 @@ const GetAllAccounts = async (req, res) => {
 
 const GetAccount = async (req, res) => {
     try {
-        console.log(req.body);
-        const account = await Account.findById(req.body);
-        if (!account) {
-            return res.status(404).json({ message: "Account not found" });
-        }
+        const {UserID}=req.params;
+        const account = await Account.findById(UserID);
         res.status(200).json(account);
     } catch (err) {
         res.status(500).json({ message: "An error occurred while searching for the account" });
     }
 };
 
-const GetClaims = async (req, res) => {
+const GetClaim = async (req, res) => {
     try {
-        console.log(req.body);
-        const claims = await Claim.find(req.body);
+        const {ClaimID}=req.params;
+        const claims = await Claim.find(ClaimID);
         res.status(200).json(claims);
     } catch (err) {
         res.status(500).json({ message: "An error occurred while searching for the claims" });
@@ -45,7 +42,6 @@ const GetClaims = async (req, res) => {
 
 const CreateAccount = async (req, res) => {
     try {
-        console.log(req.body);
         const savedAccount = await Account.create(req.body);
         res.status(201).json(savedAccount);
     } catch (err) {
@@ -55,102 +51,46 @@ const CreateAccount = async (req, res) => {
 
 const DeleteAccount = async (req, res) => {
     try {
-        console.log(req.body);
-        const deletedAccount = await Account.findByIdAndDelete(req.body);
-        if (!deletedAccount) {
-            return res.status(404).json({ message: "Account not found" });
+        const { UserID } = req.params;
+    
+        const account = await Account.findByIdAndDelete(UserID);
+    
+        if (!account) {
+          return res.status(404).json({ message: "Account not found" });
         }
+    
         res.status(200).json({ message: "Account deleted successfully" });
-    } catch (err) {
-        res.status(500).json({ message: "An error occurred while deleting the account" });
-    }
-};
+      } catch (error) {
+        res.status(500).json({ message: error.message });
+      }
+    };
 
-const ChangeAccountState = async (req, res) => {
+const UpdateAccount = async (req, res) => {
     try {
-        const { UserID, newState } = console.log(req.body);;
-        const account = await Account.findById(UserID);
+        const {UserID}=req.params;
+
+        const account = await Account.findByIdAndUpdate(User, req.body);   
+
         if (!account) {
             return res.status(404).json({ message: "Account not found" });
         }
-        account.AccountState = newState;
-        const updatedAccount = await account.save();
-        res.status(200).json(updatedAccount);
-    } catch (err) {
-        res.status(500).json({ message: "An error occurred while changing account state" });
-    }
-};
 
-const ChangePassword = async (req, res) => {
-    try {
-        const { UserID, newPassword } = console.log(req.body);;
-        const account = await Account.findById(UserID);
-        if (!account) {
-            return res.status(404).json({ message: "Account not found" });
-        }
-        account.Password = newPassword;
-        const updatedAccount = await account.save();
+        const updatedAccount = await Account.findById(UserID);
         res.status(200).json(updatedAccount);
-    } catch (err) {
-        res.status(500).json({ message: "An error occurred while changing Password" });
     }
-};
+    catch (err) {
+        res.status(500).json({ message: "An error occurred while updating the account" });
+    }
+}
 
-const ChangeExpiry = async (req, res) => {
-    try {
-        const { UserID, newExpiry } = req.body;
-        const account = await Account.findById(UserID);
-        if (!account) {
-            return res.status(404).json({ message: "Account not found" });
-        }
-        account.Expiry = newExpiry;
-        const updatedAccount = await account.save();
-        res.status(200).json(updatedAccount);
-    } catch (err) {
-        res.status(500).json({ message: "An error occurred while changing Expiry" });
-    }
-};
 
-const ChangeUserType = async (req, res) => {
-    try {
-        const { UserID, newUserType } = req.body;
-        const account = await Account.findById(UserID);
-        if (!account) {
-            return res.status(404).json({ message: "Account not found" });
-        }
-        account.UserType = newUserType;
-        const updatedAccount = await account.save();
-        res.status(200).json(updatedAccount);
-    } catch (err) {
-        res.status(500).json({ message: "An error occurred while changing UserType" });
-    }
-};
-
-const ChangeDepartmentID = async (req, res) => {
-    try {
-        const { UserID, newDepartmentID } = req.body;
-        const account = await Account.findById(UserID);
-        if (!account) {
-            return res.status(404).json({ message: "Account not found" });
-        }
-        account.DepartmentID = newDepartmentID;
-        const updatedAccount = await account.save();
-        res.status(200).json(updatedAccount);
-    } catch (err) {
-        res.status(500).json({ message: "An error occurred while changing DepartmentID" });
-    }
-};
 
 module.exports = {
     CreateAccount,
     GetAllClaims,
     GetAllAccounts,
     GetAccount,
-    GetClaims,
-    ChangeAccountState,
-    ChangePassword,
-    ChangeExpiry,
-    ChangeUserType,
-    ChangeDepartmentID,
+    GetClaim,
+    UpdateAccount,
     DeleteAccount
 };
