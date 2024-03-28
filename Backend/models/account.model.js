@@ -25,7 +25,7 @@ const AccountSchema = mongoose.Schema({
         default:'Active'
     },
     DepartmentID: {
-        type:'String',
+        type:String,
         reuired:true,
     }
 ,

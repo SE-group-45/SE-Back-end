@@ -11,7 +11,7 @@ const {CreateAccount,DeleteAccount,GetAllClaims,GetAllAccounts,GetAccount,GetCla
 const router = express.Router();
 
 // Create a new account
-router.post('/:account', CreateAccount);
+router.post('/', CreateAccount);
 
 // Get all claims
 router.get('/:claims', GetAllClaims);

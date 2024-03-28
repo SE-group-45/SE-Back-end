@@ -11,6 +11,17 @@ const financeteamuserRoute = require('./routes/financeteamuser.route.js');
 const systemadminRoute = require('./routes/systemadministrator.route.js');
 const loginRoute = require('./routes/login.route.js');
 
+// connect this to your local host that is running the front end react file
+app.use(cors({
+    origin: 'http://localhost:5173' // Replace with your React front end origin
+  }));
+
+// this is middleware: what format this page can take in requests
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+
+
 // SCHEMAS
 // schema for account
 const Account=require('./models/account.model.js');
@@ -29,14 +40,7 @@ app.use('/api/financeteamuser',financeteamuserRoute);
 // route for system admininstrator
 app.use('/api/systemadministrator',systemadminRoute);
 
-// this is middleware: what format this page can take in requests
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 
-// connect this to your local host that is running the front end react file
-app.use(cors({
-    origin: 'http://localhost:5173' // Replace with your React front end origin
-  }));
 
 // when the user signs in we need to have the api call contain the account username and password- security
 // for the input is required to have the input username and password
@@ -52,8 +56,16 @@ app.get('/api/login/:username/:password',loginRoute);
 //
 // get all accounts
 app.get('/api/systemadministrator/:accounts', systemadminRoute);
+
+
+
 // create an account
-app.post('/api/systemadministrator/:accounts', systemadminRoute);
+app.post('/api/systemadministrator', systemadminRoute);
+
+
+
+
+
 // get a specific account by ID
 app.get('/api/systemadministrator/:accounts/:id', systemadminRoute);
 // update an account by ID
@@ -73,23 +85,17 @@ app.delete('/api/systemadministrator/:claims/:id', systemadminRoute);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 // EMPLOYEE PAGE
 // get all claims
 app.get('/api/employee/:username/:password',employeeRoute);
 // make claim
 app.post('/api/employee/:username/:password',employeeRoute);
+
+
+
+
+
+
 
 // MANAGER page
 app.get('/api/manager/:username/:password',managerRoute);

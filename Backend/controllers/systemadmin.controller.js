@@ -47,17 +47,11 @@ const GetClaims = async (req, res) => {
 };
 
 const CreateAccount = async (req, res) => {
+    
     try {
-        const { UserID, Password, Expiry, UserType, AccountState, DepartmentID } = req.body;
-        const account = new Account({
-            UserID,
-            Password,
-            Expiry, 
-            UserType, 
-            AccountState, 
-            DepartmentID
-        });
-        const savedAccount = await account.save();
+        console.log(req.body);
+        const savedAccount = await Account.create(req.body);
+        
         res.status(201).json(savedAccount);
     } catch (err) {
         res.status(500).json({ message: "An error occured trying to create the account" });
