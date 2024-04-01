@@ -61,7 +61,7 @@ const CreateClaim = async (req, res) => {
 
         if (ValidAccount) {
             const { claim } = await Claim.create(req.body);
-            return res.status(200).json({ message: 'claim successfully made'});
+            return res.status(200).json({ message: 'claim successfully made' });
         }
         else {
             return res.status(400).json({ error: "invalid account" })

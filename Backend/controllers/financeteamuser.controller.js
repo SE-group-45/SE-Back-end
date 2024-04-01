@@ -22,11 +22,7 @@ const GetClaim = async (req, res) => {
     try {
         const ValidAccount = CheckAccount(req.params.token);
         if (ValidAccount) {
-
             const account = await Account.find({ Token: req.params.token });
-
-
-
             const claimRecord = await Claim.findOne({
                 FTUaccount: account._id,
                 _id: req.params.claimid
@@ -49,9 +45,7 @@ const ApproveClaim = async (req, res) => {
     try {
         console.log('here');
         const ValidAccount = CheckAccount(req.params.token);
-
         if (ValidAccount) {
-
             const account = await Account.findOne({ Token: req.params.token });
             console.log(account)
             const claimRecord = await Claim.findOne({
@@ -63,14 +57,12 @@ const ApproveClaim = async (req, res) => {
             if (!claimRecord) {
                 return res.status(403).json({ error: "request denied" })
             }
-
             const Updatedclaim = await Claim.findOneAndUpdate(
                 { _id: req.params.claimid },
                 { ClaimState: 'Approved by FTU' },
                 { new: true }
             );
             res.json(Updatedclaim);
-
         }
         else {
             return res.status(403).json({ error: "invalid account" })
@@ -83,13 +75,8 @@ const ApproveClaim = async (req, res) => {
 const RejectClaim = async (req, res) => {
     try {
         const ValidAccount = CheckAccount(req.params.token);
-
         if (ValidAccount) {
-
             const account = await Account.find({ Token: req.params.token });
-
-
-
             const claim = await Claim.findOne({
                 FTUaccount: account._id,
                 _id: req.params.claimid
@@ -98,9 +85,6 @@ const RejectClaim = async (req, res) => {
             if (!claim) {
                 return res.status(403).json({ error: "request denied" })
             }
-
-
-
             const claimRecord = await Claim.findOneAndUpdate(
                 { _id: req.params.claimid },
                 { ClaimState: 'Rejected', RejectionReason: req.body.rejectionReason },
@@ -123,9 +107,6 @@ const GetClaims = async (req, res) => {
 
         if (ValidAccount) {
             const account = await Account.find({ Token: req.params.token });
-
-
-
             const claimRecord = await Claim.findOne({
                 FTUaccount: account._id,
                 _id: req.params.claimid
@@ -134,13 +115,11 @@ const GetClaims = async (req, res) => {
             if (!claimRecord) {
                 return res.status(403).json({ error: "request denied" })
             }
-
             const claimRecords = await Claim.find({
                 FTUaccount: account._id,
                 ClaimState: 'Approve by Manager'
             });
             res.json(claimRecords);
-
         }
         else {
             return res.status(403).json({ error: "invalid account" })
