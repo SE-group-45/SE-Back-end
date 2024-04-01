@@ -31,7 +31,7 @@ const GetClaim = async (req, res) => {
 
             const claimRecord = await Claim.findOne({
                 FTUaccount: account._id,
-                claimID: req.params.claimid
+                _id: req.params.claimid
             });
             //   check if the account and claim match
             if (!claimRecord) {
@@ -49,6 +49,7 @@ const GetClaim = async (req, res) => {
 
 const ApproveClaim = async (req, res) => {
     try {
+        console.log('here');
         const ValidAccount = CheckAccount(req.params.token);
 
         if (ValidAccount) {
@@ -59,7 +60,7 @@ const ApproveClaim = async (req, res) => {
 
             const claimRecord = await Claim.findOne({
                 FTUaccount: account._id,
-                claimID: req.params.claimid
+                _id: req.params.claimid
             });
             //   check if the account and claim match
             if (!claimRecord) {
@@ -94,7 +95,7 @@ const RejectClaim = async (req, res) => {
 
             const claim = await Claim.findOne({
                 FTUaccount: account._id,
-                claimID: req.params.claimid
+                _id: req.params.claimid
             });
             //   check if the account and claim match
             if (!claim) {
@@ -130,7 +131,7 @@ const GetClaims = async (req, res) => {
 
             const claimRecord = await Claim.findOne({
                 FTUaccount: account._id,
-                claimID: req.params.claimid
+                _id: req.params.claimid
             });
             //   check if the account and claim match
             if (!claimRecord) {

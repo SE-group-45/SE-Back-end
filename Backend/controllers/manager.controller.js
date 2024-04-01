@@ -1,8 +1,6 @@
 const Account = require('../models/account.model.js');
 const Claim = require('../models/claim.model.js');
 
-
-
 // check the account signed in is valid manager account
 const CheckAccount = async (token) => {
   try {
@@ -44,20 +42,31 @@ const ApproveClaim = async (req, res) => {
     const ValidAccount = CheckAccount(req.params.token);
 
     if (ValidAccount) {
+      
       // this is how they will randomly be assigned to a FTU account
       const [totalResponses, responses] = await Promise.all([
-        Account.countDocuments({ UserType:'FinanceTeamUser' }), // Get total count
-        Account.find({UserType:'FinanceTeamUser'}) // Fetch all responses
+        Account.countDocuments({ UserType:'FTU' }), // Get total count
+        Account.find({UserType:'FTU'}) // Fetch all responses
       ]);
+
+
+      // check if claim is in pending state
+      const currentClaim = await Claim.find({_id:req.params.dbclaimid});
+      console.log(currentClaim)
+      if (currentClaim[0].ClaimState!='Pending') {
+        return res.status(500).json({ error: 'invalid claim' });
+      }
+
       const position=Math.random();
       const randomUser=responses[Math.floor(position*totalResponses)]
+      console.log(totalResponses, randomUser);
       const claimRecord = await Claim.findOneAndUpdate(
-        { _id: req.params.id },
+        { _id: req.params.dbclaimid },
         { ClaimState: 'Approved by Manager',FTUaccount: randomUser._id},
         { new: true }
       );
 
-      res.json(claimRecord);
+      return res.json({message:'success'});
       
     }
     else {
@@ -74,7 +83,7 @@ const RejectClaim = async (req, res) => {
 
     if (ValidAccount) {
       const claimRecord = await Claim.findOneAndUpdate(
-        { _id: req.params.id },
+        { _id: req.params.dbclaimid },
         { ClaimState: 'Rejected', RejectionReason: req.body.rejectionReason },
         { new: true }
       );

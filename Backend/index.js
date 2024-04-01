@@ -66,7 +66,7 @@ app.put('/api/systemadministrator/updateaccount/:token/:dbid', systemadminRoute)
 app.delete('/api/systemadministrator/delete/:token', systemadminRoute);
 // get all claims
 app.get('/api/systemadministrator/getallclaims/:token', systemadminRoute);
-// get a all claims from specific account
+// get a all claims from specific account using db claim id
 app.get('/api/systemadministrator/getsingleclaim/:token/:claimid', systemadminRoute);
 
 
@@ -85,25 +85,22 @@ app.get('/api/employee/:token/:id',employeeRoute);
 //get specific employee claim to view
 app.get('/api/manager/:token/GetClaim/:departmentID/:claimID',managerRoute);
 // approve specific claim
-app.get('/api/manager/:token/ApproveClaim/:id/approve',managerRoute);
+app.put('/api/manager/ApproveClaim/:token/:dbclaimid',managerRoute);
 // decline a specific claim
-app.get('/api/manager/:token/RejectClaim/:id/reject',managerRoute);
+app.put('/api/manager/RejectClaim/:token/:dbclaimid',managerRoute);
 // view al pending claims
 app.get('/api/manager/:token/ViewPendingClaims/:departmentID',managerRoute);
-
 
 
 //FINANCE TEAM USER page
 //get all claims assigned to FTU
 app.get('/api/financeteamuser/getclaims/:token');
 // approve
-app.patch('/api/financeteamuser/approve/:claimid/:token');
+app.put('/api/financeteamuser/approve/:claimid/:token');
 // decline
-app.patch('/api/financeteamuser/deny/:claimid/:token');
+app.put('/api/financeteamuser/deny/:claimid/:token');
 // get single claim
 app.get('/api/financeteamuser/viewclaim/:claimid/:token');
-
-
 
 
 // Username: samaychadhasc

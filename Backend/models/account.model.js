@@ -7,6 +7,11 @@ const AccountSchema = mongoose.Schema({
         type: String,
         required: [true]
     },
+    Name:{
+        type: String,
+        required:false,
+        default:'unspecified'
+    },
     Expiry: {
         type: String,
         required: [true, 'Please enter product name']

@@ -15,6 +15,6 @@ router.get('/api/financeteamuser/viewclaim/:claimid/:token', GetClaim);
 // approve claim
 router.put('/api/financeteamuser/approve/:claimid/:token', ApproveClaim);
 // reject claim
-router.get('/api/financeteamuser/deny/:claimid/:token', RejectClaim);
+router.put('/api/financeteamuser/deny/:claimid/:token', RejectClaim);
 
 module.exports = router;

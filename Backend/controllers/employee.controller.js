@@ -22,10 +22,10 @@ const CheckAccount = async (token) => {
 
 const GetAllClaims = async (req, res) => {
     try {
-
         const ValidAccount = CheckAccount(req.params.token);
 
         if (ValidAccount) {
+            const account = await Account.find({ Token: token });
             // get all the claims that belong to the user by the user id
             const claims = await GetAllClaims.find({ _id: account._id });
             return res.status(200).json(claims);
@@ -66,8 +66,10 @@ const CreateClaim = async (req, res) => {
         const ValidAccount = CheckAccount(req.params.token);
 
         if (ValidAccount) {
+
             const { claim } = await Claim.create(req.body)
-            return res.status(200).json(claim);
+            console.log(req.body)
+            return res.status(200).json({ message: 'claim successfully made'});
         }
         else {
             return res.status(403).json({ error: "invalid account" })

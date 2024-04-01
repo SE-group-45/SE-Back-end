@@ -13,14 +13,9 @@ const ClaimSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    UserType: {
-        type: String,
-        required: true,
-        default:'Employee'
-    },
     ClaimState: {
         type:String,
-        required: true,
+        required: false,
         default:'Pending'
     },
     DepartmentID: {
