@@ -20,8 +20,6 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-
-
 // SCHEMAS
 // schema for account
 const Account=require('./models/account.model.js');
@@ -40,69 +38,70 @@ app.use('/api/financeteamuser',financeteamuserRoute);
 // route for system admininstrator
 app.use('/api/systemadministrator',systemadminRoute);
 
-
-
 // when the user signs in we need to have the api call contain the account username and password- security
 // for the input is required to have the input username and password
 // all calls below are strictly example operations and the names you can change to whatever you wish
 // ALL APIs FOR:
 // Login page
-app.get('/api/login/:username/:password',loginRoute);
+//
 
 
+//login
+app.patch('/api/login',loginRoute);
+//logout
+app.patch('/api/login/logout',loginRoute);
 
 
 // SYSTEM ADMINISTRATOR page
 //
 // get all accounts
-app.get('/api/systemadministrator/:accounts', systemadminRoute);
-
-
-
+app.get('/api/systemadministrator/getallaccounts/:token', systemadminRoute);
 // create an account
-app.post('/api/systemadministrator', systemadminRoute);
-
-
-
-
-
+app.post('/api/systemadministrator/create/:token', systemadminRoute);
 // get a specific account by ID
-app.get('/api/systemadministrator/:accounts/:id', systemadminRoute);
+app.get('/api/systemadministrator/getsingleaccount/:token/:userid', systemadminRoute);
 // update an account by ID
-app.put('/api/systemadministrator/:accounts/:id', systemadminRoute);
+app.put('/api/systemadministrator/updateaccount/:token/:dbid', systemadminRoute);
 // delete an account by ID
-app.delete('/api/systemadministrator/:accounts/:id', systemadminRoute);
-//
+app.delete('/api/systemadministrator/delete/:token', systemadminRoute);
 // get all claims
-app.get('/api/systemadministrator/:claims', systemadminRoute);
-// get a specific claim by ID
-app.get('/api/systemadministrator/:claims/:id', systemadminRoute);
-// update a claim by ID
-app.put('/api/systemadministrator/:claims/:id', systemadminRoute);
-// delete a claim by ID
-app.delete('/api/systemadministrator/:claims/:id', systemadminRoute);
-
-
+app.get('/api/systemadministrator/getallclaims/:token', systemadminRoute);
+// get a all claims from specific account
+app.get('/api/systemadministrator/getsingleclaim/:token/:claimid', systemadminRoute);
 
 
 // EMPLOYEE PAGE
+//
 // get all claims
-app.get('/api/employee/:username/:password',employeeRoute);
+app.get('/api/employee/:token',employeeRoute);
 // make claim
-app.post('/api/employee/:username/:password',employeeRoute);
-
-
-
-
-
+app.post('/api/employee/:token',employeeRoute);
+// get all pending claims
+app.get('/api/employee/:token/:id',employeeRoute);
 
 
 // MANAGER page
-app.get('/api/manager/:username/:password',managerRoute);
-//FINANCE TEAM USER page
-app.get('/api/financeteamuser/:username/:password',financeteamuserRoute);
-// NOTE:when creating requests make sure that the username and password are required for every request by default - sequrity
+//
+//get specific employee claim to view
+app.get('/api/manager/:token/GetClaim/:departmentID/:claimID',managerRoute);
+// approve specific claim
+app.get('/api/manager/:token/ApproveClaim/:id/approve',managerRoute);
+// decline a specific claim
+app.get('/api/manager/:token/RejectClaim/:id/reject',managerRoute);
+// view al pending claims
+app.get('/api/manager/:token/ViewPendingClaims/:departmentID',managerRoute);
 
+
+
+//FINANCE TEAM USER page
+//get all claims assigned to FTU
+app.get('/api/financeteamuser/getclaims/:token');
+// approve
+app.patch('/api/financeteamuser/approve/:claimid/:token');
+// decline
+app.patch('/api/financeteamuser/deny/:claimid/:token');
+// get single claim
+app.get('/api/financeteamuser/viewclaim/:claimid/:token');
 
 
 

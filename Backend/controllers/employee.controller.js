@@ -1,49 +1,81 @@
 const Account = require('../models/account.model.js');
 const Claim = require('../models/claim.model.js');
 
-const GetAllClaims =async (req,res)=>{
-    try{
-        //get claims by username
-        const UserID=req.params.username;
-        const Password = req.params.password;
+// check the account signed in is valid employee account
+const CheckAccount = async (token) => {
+    try {
 
-        // check if the accout exists and details are valid
-        const account = await Account.findOne({UserID, Password});
-        if(!account){
-            // account with details not found
-            return res.status(404).json({message:'account not found'})
+        const account = await Account.find({ Token: token });
+        if (!account) {
+            return false;
         }
-        else{
+        else if (account.UserType != 'Employee') {
+            return false;
+        }
+        return true
+
+    }
+    catch (err) {
+        return false;
+    }
+}
+
+const GetAllClaims = async (req, res) => {
+    try {
+
+        const ValidAccount = CheckAccount(req.params.token);
+
+        if (ValidAccount) {
             // get all the claims that belong to the user by the user id
-            const claims = await GetAllClaims.find({_id:account._id});
+            const claims = await GetAllClaims.find({ _id: account._id });
             return res.status(200).json(claims);
         }
+        else {
+            return res.status(403).json({ error: "invalid account" })
+        }
     }
-    catch(err){
+    catch (err) {
         console.error(err);
         res.status(500).json({ message: "An error occurred while fetching data" });
     }
 };
 
-const CreateClaim =async (req,res)=>{
-    try{
-        //get claims by username
-        const UserID=req.params.username;
-        const Password = req.params.password;
+const GetPending = async (req, res) => {
+    try {
 
-        // check if the accout exists and details are valid
-        const account = await Account.findOne({UserID, Password});
-        if(!account){
-            // account with details not found
-            return res.status(404).json({message:'account not found'})
+        const ValidAccount = CheckAccount(req.params.token);
+
+        if (ValidAccount) {
+            // get all pending claims
+            const { claim } = await Claim.find(req.body.UserID);
+            return res.status(200).json(claim);
         }
-        else{
-            const {claim}= await Claim.create(req.body)
-            res.status(200).json(claim); 
+        else {
+            return res.status(403).json({ error: "invalid account" })
         }
+
     }
-    catch(err){
-        res.status(500).json({message:'error creating claim'})
+    catch (err) {
+        res.status(500).json({ message: 'error creating claim' })
+    }
+};
+
+const CreateClaim = async (req, res) => {
+    try {
+
+        const ValidAccount = CheckAccount(req.params.token);
+
+        if (ValidAccount) {
+            const { claim } = await Claim.create(req.body)
+            return res.status(200).json(claim);
+        }
+        else {
+            return res.status(403).json({ error: "invalid account" })
+        }
+
+    }
+    catch (err) {
+        res.status(500).json({ message: 'error creating claim' })
     }
 };
 
@@ -51,6 +83,7 @@ const CreateClaim =async (req,res)=>{
 module.exports = {
     // change this
     GetAllClaims,
-    CreateClaim
+    CreateClaim,
+    GetPending
 
 }

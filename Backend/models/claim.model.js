@@ -27,6 +27,17 @@ const ClaimSchema = mongoose.Schema({
         type:'String',
         reuired:true,
     },
+    FTUaccount:{
+        type: String,
+        requires:false,
+        default:''
+    },
+    RejectionReason:{
+        type: String,
+        required:false,
+        default:''
+    }
+    ,
     ImagePath:{
         type:'String',
         required: true,

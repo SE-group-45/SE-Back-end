@@ -3,43 +3,33 @@ const Account = require('../models/account.model.js');
 const Claim = require('../models/claim.model.js');
 
 // call the functions 
-// call the functions 
-const {CreateAccount,DeleteAccount,GetAllClaims,GetAllAccounts,GetAccount,GetClaims,ChangeAccountState,ChangePassword,ChangeExpiry,ChangeUserType,ChangeDepartmentID}=require('../controllers/systemadmin.controller.js');
+const {CreateAccount,DeleteAccount,GetAllClaims,GetAllAccounts,GetAccount,GetClaim,UpdateAccount}=require('../controllers/systemadministrator.controller.js');
 
 
 // connect router
 const router = express.Router();
 
+
 // Create a new account
-router.post('/', CreateAccount);
+router.post('/create/:token', CreateAccount);
 
 // Get all claims
-router.get('/:claims', GetAllClaims);
+router.get('/getallclaims/:token', GetAllClaims);
 
 // Get all accounts
-router.get('/:accounts', GetAllAccounts);
+router.get('/getallaccounts/:token', GetAllAccounts);
 
 // Get a specific account by ID
-router.get('/:account/:id', GetAccount);
+router.get('/getsingleaccount/:token/:userid', GetAccount);
 
 // Get all claims for a specific account
-router.get('/:account/:id/:claims', GetClaims);
+router.get('/getsingleclaim/:token/:claimid', GetClaim);
 
-// Change the state of an account
-router.put('/:account/:id/:state', ChangeAccountState);
+// Update an account
+router.put('/updateaccount/:token/:dbid', UpdateAccount);
+
 // Delete an account
-router.delete('/:account/:id', DeleteAccount);
+router.delete('/delete/:token/:dbid', DeleteAccount);
 
-// Change the password of an account
-router.put('/:account/:id/:password', ChangePassword);
-
-// Change the expiry date of an account
-router.put('/:account/:id/:expiry', ChangeExpiry);
-
-// Change the user type of an account
-router.put('/:account/:id/:usertype', ChangeUserType);
-
-// Change the department ID of an account
-router.put('/:account/:id/:departmentid', ChangeDepartmentID);
 
 module.exports = router;

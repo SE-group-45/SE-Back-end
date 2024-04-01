@@ -3,14 +3,16 @@ const Account = require('../models/account.model.js');
 const Claim = require('../models/claim.model.js');
 
 // call the functions 
-const {GetAllClaims,CreateClaim}=require('../controllers/employee.controller.js');
+const {GetAllClaims,CreateClaim,GetPending}=require('../controllers/employee.controller.js');
 
 // connect router
 const router = express.Router();
 
-router.get('/:username/:password',GetAllClaims);
+router.get('/:token',GetAllClaims);
 
-router.post('/:username/:password',CreateClaim);
+router.post('/:token',CreateClaim);
+
+router.get('/:token/:id',GetPending),
 
 
 module.exports = router;

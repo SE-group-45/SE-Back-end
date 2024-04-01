@@ -3,11 +3,18 @@ const Account = require('../models/account.model.js');
 const Claim = require('../models/claim.model.js');
 
 // call the functions 
-const {}=require('../controllers/financeteamuser.controller.js');
+const {GetClaim, ApproveClaim, RejectClaim, GetClaims}=require('../controllers/financeteamuser.controller.js');
 
 // connect router
 const router = express.Router();
 
-
+// get all claims assigned to user
+router.get('/api/financeteamuser/getclaims/:token', GetClaims);
+// get a single claim assigned to user
+router.get('/api/financeteamuser/viewclaim/:claimid/:token', GetClaim);
+// approve claim
+router.put('/api/financeteamuser/approve/:claimid/:token', ApproveClaim);
+// reject claim
+router.get('/api/financeteamuser/deny/:claimid/:token', RejectClaim);
 
 module.exports = router;
