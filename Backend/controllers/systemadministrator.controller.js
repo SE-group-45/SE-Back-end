@@ -5,16 +5,16 @@ const Claim = require('../models/claim.model.js');
 // check the account signed in is valid admin account
 const CheckAccount = async (token) => {
     try {
-
+        // find the account given the token generated on login
         const account = await Account.find({ Token: token });
         if (!account) {
             return false;
         }
+        // check if unique account token is connected to account of type admin
         else if (account.UserType != 'Admin') {
             return false;
         }
         return true
-
     }
     catch (err) {
         return false;
@@ -31,8 +31,6 @@ const GetAllClaims = async (req, res) => {
         else {
             return res.status(500).json({ message: "Invalid account" })
         }
-
-
     } catch (err) {
         res.status(500).json({ message: "An error occurred while retrieving claims" });
     }
@@ -61,9 +59,9 @@ const GetAccount = async (req, res) => {
         if (validDetails) {
             const { UserID } = req.params.userid;
             const account = await Account.findById(UserID);
-            if(account==null){
+            if (account == null) {
                 return res.status(500).json({ message: "account doesnt exist" })
-            } 
+            }
 
             res.status(200).json(account);
         }
@@ -98,10 +96,10 @@ const CreateAccount = async (req, res) => {
         const validDetails = CheckAccount(req.params.token);
         if (validDetails) {
             // check if the account id exists
-             console.log(req.body.UserID)
-            const account = await Account.find({UserID: req.body.UserID});
-          
-            if (account==false) {
+            console.log(req.body.UserID)
+            const account = await Account.find({ UserID: req.body.UserID });
+
+            if (account == false) {
                 const savedAccount = await Account.create(req.body);
                 return res.status(201).json(savedAccount);
             }
@@ -123,7 +121,7 @@ const DeleteAccount = async (req, res) => {
     try {
         const validDetails = CheckAccount(req.params.token);
         if (validDetails) {
-            const { UserID } = req.params.dbid;
+            const { UserID } = req.params.account_id;
 
             const account = await Account.findByIdAndDelete(UserID);
 
@@ -146,7 +144,7 @@ const UpdateAccount = async (req, res) => {
     try {
         const validDetails = CheckAccount(req.params.token);
         if (validDetails) {
-            const { UserID } = req.params.dbid;
+            const { UserID } = req.params.account_id;
 
             const account = await Account.findByIdAndUpdate(User, req.body);
 

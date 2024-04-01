@@ -9,12 +9,12 @@ const {GetClaim, ApproveClaim, RejectClaim, GetClaims}=require('../controllers/f
 const router = express.Router();
 
 // get all claims assigned to user
-router.get('/api/financeteamuser/getclaims/:token', GetClaims);
+router.get('/getclaims/:token', GetClaims);
 // get a single claim assigned to user
-router.get('/api/financeteamuser/viewclaim/:claimid/:token', GetClaim);
+router.get('/viewclaim/:claimid/:token', GetClaim);
 // approve claim
-router.put('/api/financeteamuser/approve/:claimid/:token', ApproveClaim);
+router.put('/approve/:claimid/:token', ApproveClaim);
 // reject claim
-router.put('/api/financeteamuser/deny/:claimid/:token', RejectClaim);
+router.put('/deny/:claimid/:token', RejectClaim);
 
 module.exports = router;

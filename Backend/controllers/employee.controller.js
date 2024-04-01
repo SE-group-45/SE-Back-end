@@ -4,7 +4,6 @@ const Claim = require('../models/claim.model.js');
 // check the account signed in is valid employee account
 const CheckAccount = async (token) => {
     try {
-
         const account = await Account.find({ Token: token });
         if (!account) {
             return false;
@@ -13,7 +12,6 @@ const CheckAccount = async (token) => {
             return false;
         }
         return true
-
     }
     catch (err) {
         return false;
@@ -23,7 +21,6 @@ const CheckAccount = async (token) => {
 const GetAllClaims = async (req, res) => {
     try {
         const ValidAccount = CheckAccount(req.params.token);
-
         if (ValidAccount) {
             const account = await Account.find({ Token: token });
             // get all the claims that belong to the user by the user id
@@ -31,7 +28,7 @@ const GetAllClaims = async (req, res) => {
             return res.status(200).json(claims);
         }
         else {
-            return res.status(403).json({ error: "invalid account" })
+            return res.status(400).json({ error: "invalid account" })
         }
     }
     catch (err) {
@@ -42,21 +39,18 @@ const GetAllClaims = async (req, res) => {
 
 const GetPending = async (req, res) => {
     try {
-
         const ValidAccount = CheckAccount(req.params.token);
-
         if (ValidAccount) {
             // get all pending claims
-            const { claim } = await Claim.find(req.body.UserID);
+            const { claim } = await Claim.find(req.params.claimid);
             return res.status(200).json(claim);
         }
         else {
-            return res.status(403).json({ error: "invalid account" })
+            return res.status(400).json({ error: "invalid account" })
         }
-
     }
     catch (err) {
-        res.status(500).json({ message: 'error creating claim' })
+        res.status(500).json({ message: 'error getting claims' })
     }
 };
 
@@ -66,15 +60,12 @@ const CreateClaim = async (req, res) => {
         const ValidAccount = CheckAccount(req.params.token);
 
         if (ValidAccount) {
-
-            const { claim } = await Claim.create(req.body)
-            console.log(req.body)
+            const { claim } = await Claim.create(req.body);
             return res.status(200).json({ message: 'claim successfully made'});
         }
         else {
-            return res.status(403).json({ error: "invalid account" })
+            return res.status(400).json({ error: "invalid account" })
         }
-
     }
     catch (err) {
         res.status(500).json({ message: 'error creating claim' })

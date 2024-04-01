@@ -12,7 +12,7 @@ router.get('/:token',GetAllClaims);
 
 router.post('/:token',CreateClaim);
 
-router.get('/:token/:id',GetPending),
+router.get('/:token/:claimid',GetPending),
 
 
 module.exports = router;

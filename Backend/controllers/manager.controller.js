@@ -12,7 +12,6 @@ const CheckAccount = async (token) => {
       return false;
     }
     return true
-
   }
   catch (err) {
     return false;

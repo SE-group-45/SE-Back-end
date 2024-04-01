@@ -1,8 +1,6 @@
 const Account = require('../models/account.model.js');
 const Claim = require('../models/claim.model.js');
 
-
-
 // check the account signed in is valid manager account
 const CheckAccount = async (token) => {
     try {
@@ -54,21 +52,20 @@ const ApproveClaim = async (req, res) => {
 
         if (ValidAccount) {
 
-            const account = await Account.find({ Token: req.params.token });
-
-
-
+            const account = await Account.findOne({ Token: req.params.token });
+            console.log(account)
             const claimRecord = await Claim.findOne({
-                FTUaccount: account._id,
-                _id: req.params.claimid
+                _id: req.params.claimid,
+                FTUaccount: account._id
             });
+            console.log(claimRecord)
             //   check if the account and claim match
             if (!claimRecord) {
                 return res.status(403).json({ error: "request denied" })
             }
 
             const Updatedclaim = await Claim.findOneAndUpdate(
-                { _id: req.params.id },
+                { _id: req.params.claimid },
                 { ClaimState: 'Approved by FTU' },
                 { new: true }
             );

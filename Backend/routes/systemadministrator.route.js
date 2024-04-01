@@ -26,10 +26,10 @@ router.get('/getsingleaccount/:token/:userid', GetAccount);
 router.get('/getsingleclaim/:token/:claimid', GetClaim);
 
 // Update an account
-router.put('/updateaccount/:token/:dbid', UpdateAccount);
+router.put('/updateaccount/:token/:account_id', UpdateAccount);
 
 // Delete an account
-router.delete('/delete/:token/:dbid', DeleteAccount);
+router.delete('/delete/:token/:account_id', DeleteAccount);
 
 
 module.exports = router;
