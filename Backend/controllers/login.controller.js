@@ -88,6 +88,10 @@ const DealWithSignin = async (req, res) => {
         else if (user.Signedin) {
             return res.status(400).json({ errors: "User already signed in" });
         }
+        // deal with inactive accounts
+        else if (user.AccountState=='Inactive'){
+            return res.status(400).json({errors:'user account is inactive'})
+        }
        
 
         // implement the bycrypt method in the system admin account creation operation if you want to.
@@ -106,7 +110,7 @@ const DealWithSignin = async (req, res) => {
         };
         const authtoken = jwt.sign(data, secret);
         // this token is what will be used for all api calls during the session for a single account
-        res.json({ authtoken: authtoken });
+        res.json({ authtoken: authtoken ,UserType: user.UserType });
 
 
         // update db to make user signed in
