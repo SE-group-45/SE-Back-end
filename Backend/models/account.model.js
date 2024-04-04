@@ -38,19 +38,20 @@ const AccountSchema = mongoose.Schema({
         type:Boolean,
         required: false,
         default: false
-    }
-    ,
+    },
     Token:{
         type:String,
         required:false,
         default:''
-    }
-,
+    },
+    Devices:{
+        type:Number,
+        default:0,
+    },
 }, {
     // this is the creation date of the account
     timestamps: true,
 })
-
 
 const Account = mongoose.model('Accounts', AccountSchema);
 

@@ -89,9 +89,8 @@ const DealWithSignin = async (req, res) => {
         }
                //   check if the user is signed in on another device if so send the token
         else if (user.Signedin) {
-            const FindUser = await Account.findById({_id:user._id});
-
-            return res.status(200).json({UserID:FindUser.UserID, UserType:FindUser.UserType,authtoken: FindUser.Token, name: FindUser.Name,DepartmentID: FindUser.DepartmentID});
+            const Update = await Account.findByIdAndUpdate(user._id, { Devices: user.Devices+1});
+            return res.status(200).json({ UserID:user.UserID ,authtoken: user.Token ,UserType: user.UserType, name: user.Name, DepartmentID: user.DepartmentID});
         }
         // implement the bycrypt method in the system admin account creation operation if you want to.
         const passwordCompare =  (req.body.Password==user.Password)
@@ -109,7 +108,7 @@ const DealWithSignin = async (req, res) => {
         };
 
         const authtoken = jwt.sign(data, secret);       
-        const Update = await Account.findByIdAndUpdate(user._id, {Signedin:true, Token: authtoken });
+        const Update = await Account.findByIdAndUpdate(user._id, {Signedin:true, Token: authtoken ,Devices: user.Devices+1});
         // this token is what will be used for all api calls during the session for a single account
         res.json({ UserID:user.UserID ,authtoken: authtoken ,UserType: user.UserType, name: user.Name, DepartmentID: user.DepartmentID });
 
@@ -130,13 +129,26 @@ const DealWithSignin = async (req, res) => {
 // make user signout
 const DealWithSignout = async (req, res) => {
     try{
+        
         let user = await Account.findOne({ UserID: req.body.UserID });
-        const Update = await Account.findByIdAndUpdate(user._id, { Signedin: false , Token: ''});
 
-        if(!Update){
-            res.status(500).send("Failed to sign out");
+        // check the number of devices signed in is >1
+        if (user.Devices>1){
+            // 
+            console.log("2nd device");
+            const Update = await Account.findByIdAndUpdate(user._id, {Devices: user.Devices-1});
+            
+            
+            console.log(Update);
+            return res.status(200).send("User signed out of this device");
         }
-        res.status(200).send("User signed out");
+        else{
+            const Update = await Account.findByIdAndUpdate(user._id, {Devices:0, Signedin: false , Token: ''});
+            res.status(200).send("User signed out");
+        }
+
+
+        
     }
     catch(error){
         res.status(500).send("Failed to sign out");
