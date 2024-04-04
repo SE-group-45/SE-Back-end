@@ -85,8 +85,12 @@ const DealWithSignin = async (req, res) => {
             return res.status(400).json({ error: "Incorrect credentials" });
         }
         //   check if the user is signed in on another device
-        else if (user.Signedin) {
-            return res.status(400).json({ errors: "User already signed in" });
+        // else if (user.Signedin) {
+        //     return res.status(400).json({ errors: "User already signed in" });
+        // }
+        // deal with inactive accounts
+        else if (user.AccountState=='Inactive'){
+            return res.status(400).json({errors:'user account is inactive'})
         }
        
 
@@ -106,7 +110,7 @@ const DealWithSignin = async (req, res) => {
         };
         const authtoken = jwt.sign(data, secret);
         // this token is what will be used for all api calls during the session for a single account
-        res.json({ authtoken: authtoken });
+        res.json({ authtoken: authtoken ,UserType: user.UserType, UserID: user.UserID});
 
 
         // update db to make user signed in
