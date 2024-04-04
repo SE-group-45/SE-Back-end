@@ -7,7 +7,7 @@
     flex-wrap: wrap;
   }
 
-  button{
+  .Claim-Wrapper{
     all: unset;
       width:15vw;
       height: 15vw;

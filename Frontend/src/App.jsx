@@ -61,7 +61,7 @@
 
 
   useEffect(() => {
-    
+    console.log(User)
 }, [User]); // This effect runs whenever User state changes
   
 
