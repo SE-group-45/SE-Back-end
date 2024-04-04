@@ -1,0 +1,125 @@
+{
+    "expenses": [
+        {
+            "name": "Office Supplies",
+            "amount": 1000,
+            "status": "Sent",
+            "date_sent": "2024-03-10"
+        },
+        {
+            "name": "Travel Expenses",
+            "amount": 1500,
+            "status": "Approved",
+            "date_sent": "2024-03-05"
+        },
+        {
+            "name": "Client Entertainment",
+            "amount": 500,
+            "status": "Refunding",
+            "date_sent": "2024-03-02"
+        },
+        {
+            "name": "Marketing Campaign",
+            "amount": 2000,
+            "status": "Rejected",
+            "date_sent": "2024-02-28"
+        },
+        {
+            "name": "Equipment Purchase",
+            "amount": 800,
+            "status": "Sent",
+            "date_sent": "2024-02-25"
+        },
+        {
+            "name": "Software Subscription",
+            "amount": 1200,
+            "status": "Approved",
+            "date_sent": "2024-02-20"
+        },
+        {
+            "name": "Training Expenses",
+            "amount": 700,
+            "status": "Refunding",
+            "date_sent": "2024-02-15"
+        },
+        {
+            "name": "Consulting Fees",
+            "amount": 1800,
+            "status": "Rejected",
+            "date_sent": "2024-02-10"
+        },
+        {
+            "name": "Legal Services",
+            "amount": 600,
+            "status": "Sent",
+            "date_sent": "2024-02-05"
+        },
+        {
+            "name": "Office Rent",
+            "amount": 900,
+            "status": "Approved",
+            "date_sent": "2024-01-31"
+        },
+        {
+            "name": "Utilities",
+            "amount": 400,
+            "status": "Refunding",
+            "date_sent": "2024-01-26"
+        },
+        {
+            "name": "Insurance Premiums",
+            "amount": 3000,
+            "status": "Rejected",
+            "date_sent": "2024-01-21"
+        },
+        {
+            "name": "Employee Benefits",
+            "amount": 1100,
+            "status": "Sent",
+            "date_sent": "2024-01-16"
+        },
+        {
+            "name": "Charitable Donations",
+            "amount": 1400,
+            "status": "Approved",
+            "date_sent": "2024-01-11"
+        },
+        {
+            "name": "Maintenance Services",
+            "amount": 950,
+            "status": "Refunding",
+            "date_sent": "2024-01-06"
+        },
+        {
+            "name": "Website Development",
+            "amount": 2500,
+            "status": "Rejected",
+            "date_sent": "2023-12-31"
+        },
+        {
+            "name": "Graphic Design",
+            "amount": 1300,
+            "status": "Sent",
+            "date_sent": "2023-12-26"
+        },
+        {
+            "name": "Accounting Fees",
+            "amount": 1600,
+            "status": "Approved",
+            "date_sent": "2023-12-21"
+        },
+        {
+            "name": "Cleaning Services",
+            "amount": 850,
+            "status": "Refunding",
+            "date_sent": "2023-12-16"
+        },
+        {
+            "name": "Product Samples",
+            "amount": 2200,
+            "status": "Rejected",
+            "date_sent": "2023-12-11"
+        }
+    ]
+}
+

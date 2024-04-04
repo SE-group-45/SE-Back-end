@@ -1,0 +1,166 @@
+@font-face {
+    font-family: Termina;
+    src: url("../../fonts/TerminaTest-Demi.otf") format("opentype");
+}
+@font-face {
+    font-family: Termina-light;
+    src: url("../../fonts/TerminaTest-Light.otf") format("opentype");
+}
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    
+}
+
+body {
+    background-color: #c1f6ff;
+    color: #283858;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    color: inherit; 
+}
+
+
+.signinSection {
+    padding: 1.5em 1.5em 3em;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    color: #283858;
+    align-items: center;
+    justify-content: space-between;
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 1.5em;
+}
+
+.hamburgerMenu {
+    display: none;
+}
+
+.headerLeft {
+    z-index: 3;
+}
+
+.headerRight {
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+}
+
+.headerRight h3 {
+    font-family: Termina;
+    font-weight: Demi;
+}
+
+/* Global link styles */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.signinSection {
+    padding: 1.5em 1.5em 3em;
+}
+
+.signinSection h1 {
+    font-family: Termina;
+    font-weight: 700;
+    text-align: center;
+}
+
+.signinSection p {
+    font-family: Greycliff;
+    font-weight: Medium;
+    text-align: center;
+    padding-top: 0.5em;
+}
+
+.signupLink {
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.formContainer {
+    background-color: #9ae1ee;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin-left: 15%;
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
+.inputField {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    width: 100%;
+}
+
+.label {
+    cursor: default;
+}
+
+:root {
+    --max-width: 1100px;
+}
+
+:host, :root {
+    --rem: 16;
+}
+
+.buttonShadow {
+    width: fit-content;
+    position: relative;
+    align-self: center;
+}
+
+.inputBackground {
+    content: "";
+    background-color: #283858;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform: translate(0.2em, 0.2em);
+}
+
+.inputField input {
+    background-color: #fcf1e1;
+    border: 2px solid #283858;
+    padding: 1em 2em;
+    font-family: Greycliff;
+    font-weight: Regular;
+    border-radius: 0.5em;
+}
+.loginButton {
+    color: #283858;
+    padding: 1em 3em;
+    background-color: #ffe254;
+    border: 2px solid #283858;
+    font-family: Termina;
+    font-size: medium;
+    cursor: pointer;
+    transition: transform .3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.loginButton:hover {
+    transform: translate(-0.2em, -0.2em); /* Move button up by 5px */
+}

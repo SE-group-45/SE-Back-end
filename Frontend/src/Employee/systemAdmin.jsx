@@ -1,6 +1,4 @@
-import React, { useState, useEffect,useContext } from "react";
-import axios from "axios";
-import { UserContext } from "../App.jsx";
+import { useState } from 'react'
 import ProfilePic from './assets/hum.jpg';
 import Search from './assets/search.png';
 import Plus from './assets/plus.svg';
@@ -10,15 +8,14 @@ import './systemAdmin.css';
 import AccountManagement from './AccountManagement';
 import CurrentClaims from './CurrentClaims';
 import PreviousClaims from './PreviousClaims';
-// on each page it needs to check the context and see if it matches the component
-// every time the api call is made the context needs to be added to the URL
-function Admin(){
-    // here is the user details used for all api  calls
-    const user=useContext(UserContext);
-    const [page, setPage] = useState(<CreateAccount></CreateAccount>) 
 
-    return(
-        <>
+
+function App() {
+
+  const [page, setPage] = useState(<CreateAccount></CreateAccount>) 
+
+  return (
+    <>
     <div className='Content-Header'>
       <div className='Side-Panel'>
         <div className='Profile-Info '>
@@ -51,4 +48,4 @@ function Admin(){
   )
 }
 
-export default Admin;
+export default App

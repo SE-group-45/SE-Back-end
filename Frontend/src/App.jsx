@@ -1,119 +1,181 @@
-import { useState, createContext, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import axios from 'axios';
+  // App.js
 
-// import all pages as components
-import Employee from './Employee/Employee.jsx';
-import Manager from './Manager/Manager.jsx';
-import Admin from './SystemAdmin/Admin.jsx';
-import FTU from './FinanceTeamUser/FTU.jsx';
-
-
-
-export const UserContext = createContext()
-
-function App() {
+  import { useState, createContext, useEffect } from 'react'
+  import reactLogo from './assets/react.svg'
+  import viteLogo from '/vite.svg'
+  import './App.css'
+  import axios from 'axios';
+  import "./style.css";
+  import TopNav from "./TopNav.jsx";
+  import Employee from './Employee/Employee.jsx';
+  import Manager from './Manager/Manager.jsx';
+  import Admin from './SystemAdmin/Admin.jsx';
+  import FTU from './FinanceTeamUser/FTU.jsx';
 
 
-  // main idea for thi spage is to place the login form here
-  // Username and password state
-  const [User, setUser] = useState({
-    username: 'none',
-    password: 'none',
-    usertype: 'none'
-  })
+  export const UserContext = createContext()
 
-  // just an idea of what causes the page to switch
-  const [Signedin,setSignedin] = useState(false);
-
-  // just an idea 
-  useEffect(() => {
-    // if valid usertype setSignedin(!Signedin)
-
-  },[User])
+  function App() {
+    const [User, setUser] = useState();
 
 
-  // api call to deal with login 
-  async function handleinput() {
-    // this will be in a similar format to the GUI CW api call - will be complete by monday hopefully
+    useEffect(()=>{
+      console.log("rendered!")
+      const userobj = getUserObjectFromLocalStorage()
+      if (userobj){
+        setUser(userobj)
+        setSignedin(true)
+      }
+    },[])
+    
+    const [Signedin, setSignedin] = useState(false);
+
+    async function saveUserObjectToLocalStorage(userObject) {
+      try {
+          // Convert the userObject to a JSON string
+          const userJSON = JSON.stringify(userObject);
+          
+          // Store the JSON string in localStorage under the key 'user'
+          localStorage.setItem('user', userJSON);
+          
+          console.log('User object saved to localStorage successfully.');
+      } catch (error) {
+          console.error('Error saving user object to localStorage:', error);
+      }
+  }
+
+  function getUserObjectFromLocalStorage() {
     try {
+        // Get the JSON string from localStorage for the key 'user'
+        const userJSON = localStorage.getItem('user');
+        
+        // Parse the JSON string to convert it back to an object
+        const userObject = JSON.parse(userJSON);
 
-      const response = await axios.get(
-        `http://localhost:3000/api/products`
-      );
-
-      console.log(response.data);
-      // set the use states
+        return userObject;
     } catch (error) {
-      console.log("unknown");
+        console.error('Error fetching user object from localStorage:', error);
+        return null; // Return null if there's an error
     }
-    // clear the input field
-  }
-
-
-  // check if user is sughned in
-  // if not display login page
-  if (!Signedin) {
-    return (
-      <>
-        {/* LOGIN PAGE */}
-        {/* submit button */}
-        <button onClick={handleinput}>
-          click
-        </button>
-      </>
-    )
-  }
-  // if user signed in
-  else {
-    // the base of each pages styling will remain the same, meaing what should change is the divs that display 
-    return (
-      // the context here will pass the user details
-      <UserContext.Provider value={User}>
-
-        {/* depending on user type they will link to different components */}
-
-
-        {
-          User.usertype == 'emplyee' && (
-            // employee component
-            <>
-            <Employee />
-            </>
-          )
-        }
-        {
-          User.usertype == 'manager' && (
-            // manager component
-            <>
-            <Manager />
-
-            </>
-          )
-        }
-        {
-          User.usertype == 'financeteamuser' && (
-            // FTU   component
-            <>
-            <FTU />
-
-            </>
-          )
-        }
-        {
-          User.usertype == 'systemadministrator' && (
-            // admin component
-            <>
-            <Admin />
-
-            </>
-          )
-        }
-      </UserContext.Provider>
-    );
-  }
 }
 
-export default App
+
+  useEffect(() => {
+    console.log(User)
+}, [User]); // This effect runs whenever User state changes
+  
+
+    const handleLogin = (userData) => {
+
+      const userobj = {
+        username: userData.UserID,
+        password: '',  
+        usertype: userData.UserType,
+        token:userData.authtoken
+    }
+      setUser(userobj) 
+      saveUserObjectToLocalStorage(userobj)
+      setSignedin(true);
+ 
+    }
+
+    async function handleLogout(userData){
+      try {
+        const response = await axios.patch(
+          'http://localhost:3000/api/login/logout',
+          {UserID:userData.username}
+        );
+
+        const logoutdata = response.data
+        if (logoutdata){
+          saveUserObjectToLocalStorage(null)
+          setSignedin(false);
+        }
+      } catch (error) {
+
+        console.log("Unknown error occurred during log.", error);
+      }
+
+      
+     
+    }
+    
+    useEffect(() => {
+      // Perform any necessary actions when user data changes
+    }, [User])
+
+    if (!Signedin) {
+      return (
+        <>
+          <LoginPage onLogin={handleLogin}/>
+        </>
+      )
+    } else {
+      return (
+        <UserContext.Provider value={User}>
+          {User.usertype === 'Employee' &&  <div><button onClick={()=>handleLogout(User)}>LOG OUT</button><Employee/></div>}
+          {User.usertype === 'Manager' &&  <div><button onClick={()=>handleLogout(User)}>LOG OUT</button><Manager/></div>}
+          {User.usertype === 'FTU' && <div><button onClick={()=>handleLogout(User)}>LOG OUT</button><FTU/></div>}
+          {User.usertype === 'Admin' && <div><button onClick={()=>handleLogout(User)}>LOG OUT</button><Admin/></div>}
+        </UserContext.Provider>
+      );
+    }
+  }
+
+  export default App;
+
+  const LoginPage = ({ onLogin}) => {
+
+    async function handleinput(event) {
+      event.preventDefault();
+      const formData = new FormData(event.target);
+      const email = formData.get('email');
+      const password = formData.get('password');
+
+      try {
+        const response = await axios.patch(
+          'http://localhost:3000/api/login',
+          {UserID: email, Password: password}
+        );
+  
+        const userData = response.data; // Assuming response data contains user information
+        console.log(userData);
+        if (userData.authtoken){
+          onLogin(userData)
+        }
+      } catch (error) {
+        onLogin(false)
+        console.log("Unknown error occurred during login.", error);
+      }
+    }
+
+    return (
+      <>
+      <TopNav/>
+     
+      <div className="formContainer">
+
+        <form className="form" onSubmit={handleinput}>
+          <div className="inputField">
+            <label>Email</label>
+            <input name="email" required />
+          </div>
+          <div className="inputField">
+            <label>Password</label>
+            <input name="password" type="password" required />
+            <a className="forgotPasswordLink" href="/reset-password">
+              Forgot password?
+            </a>
+          </div>
+          <div className="buttonShadow">
+            <div className="inputBackground"></div>
+            <input type="submit" className="loginButton" value="Login" />
+          </div>
+        </form>
+      </div>
+
+      
+      </>
+
+    );
+  };
