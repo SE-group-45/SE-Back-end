@@ -78,22 +78,21 @@ const DealWithSignin = async (req, res) => {
     //     return res.status(400).json({ errors: errors.array() });
     // }
     try {
-        let user = await Account.findOne({ UserID: req.body.UserID });
+        let user = await Account.findOne({ UserID: req.body.UserID , Password: req.body.Password});
         // If users UserID doesnt exist, return BAD request
         if (!user) {
             return res.status(400).json({ error: "Incorrect credentials" });
-        }
-        //   check if the user is signed in on another device if so send the token
-        else if (user.Signedin) {
-            const FindUser = await Account.findById({_id:user._id});
-
-            return res.status(200).json({UserID:FindUser.UserID, UserType:FindUser.UserType,authtoken: FindUser.Token, name: FindUser.Name,DepartmentID: FindUser.DepartmentID});
         }
         // deal with inactive accounts
         else if (user.AccountState=='Inactive'){
             return res.status(400).json({errors:'user account is inactive'})
         }
-       
+               //   check if the user is signed in on another device if so send the token
+        else if (user.Signedin) {
+            const FindUser = await Account.findById({_id:user._id});
+
+            return res.status(200).json({UserID:FindUser.UserID, UserType:FindUser.UserType,authtoken: FindUser.Token, name: FindUser.Name,DepartmentID: FindUser.DepartmentID});
+        }
         // implement the bycrypt method in the system admin account creation operation if you want to.
         const passwordCompare =  (req.body.Password==user.Password)
         // returns True if password in DB matches input password
@@ -109,15 +108,15 @@ const DealWithSignin = async (req, res) => {
             },
         };
 
-        const authtoken = jwt.sign(data, secret);
+        const authtoken = jwt.sign(data, secret);       
+        const Update = await Account.findByIdAndUpdate(user._id, {Signedin:true, Token: authtoken });
         // this token is what will be used for all api calls during the session for a single account
-        res.json({ UserID: user.UserID,authtoken: authtoken ,UserType: user.UserType, name: user.Name,DepartmentID: user.DepartmentID });
+        res.json({ UserID:user.UserID ,authtoken: authtoken ,UserType: user.UserType, name: user.Name, DepartmentID: user.DepartmentID });
 
         // update db to make user signed in
         // can be used as a check to make it so a user cannot be signed in on multiple devices at the same time.
         // token i sgenerated on login and is used to track the session and in every ai call for the user in the session
-       
-        const Update = await Account.findByIdAndUpdate(user._id, {Signedin:true, Token: authtoken });
+
 
         if(!Update){
             res.status(500).send("Failed to login");
