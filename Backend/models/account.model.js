@@ -46,6 +46,7 @@ const AccountSchema = mongoose.Schema({
     },
     Devices:{
         type:Number,
+        required: false,
         default:0,
     },
 }, {

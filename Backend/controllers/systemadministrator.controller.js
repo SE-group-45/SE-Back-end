@@ -93,23 +93,23 @@ const GetClaim = async (req, res) => {
 
 const CreateAccount = async (req, res) => {
     try {
-        const validDetails = CheckAccount(req.params.token);
-        if (validDetails) {
-            // check if the account id exists
-            console.log(req.body.UserID)
-            const account = await Account.find({ UserID: req.body.UserID });
+        // const validDetails = CheckAccount(req.params.token);
+        // if (validDetails) {
+        //     // check if the account id exists
+        //     console.log(req.body.UserID)
+        //     const account = await Account.find({ UserID: req.body.UserID });
 
-            if (account == false) {
+        //     if (account == false) {
                 const savedAccount = await Account.create(req.body);
                 return res.status(201).json(savedAccount);
-            }
-            else {
-                return res.status(500).json({ message: "Account with ID already exists" });
-            }
-        }
-        else {
-            return res.status(500).json({ message: "Invalid account" })
-        }
+        //     }
+        //     else {
+        //         return res.status(500).json({ message: "Account with ID already exists" });
+        //     }
+        // }
+        // else {
+        //     return res.status(500).json({ message: "Invalid account" })
+        // }
 
 
     } catch (err) {

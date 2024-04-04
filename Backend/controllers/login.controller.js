@@ -90,7 +90,7 @@ const DealWithSignin = async (req, res) => {
                //   check if the user is signed in on another device if so send the token
         else if (user.Signedin) {
             const Update = await Account.findByIdAndUpdate(user._id, { Devices: user.Devices+1});
-            return res.status(200).json({ UserID:user.UserID ,authtoken: user.Token ,UserType: user.UserType, name: user.Name, DepartmentID: user.DepartmentID});
+            return res.status(200).json({ _id:user._id,UserID:user.UserID ,authtoken: user.Token ,UserType: user.UserType, name: user.Name, DepartmentID: user.DepartmentID});
         }
         // implement the bycrypt method in the system admin account creation operation if you want to.
         const passwordCompare =  (req.body.Password==user.Password)
@@ -110,7 +110,7 @@ const DealWithSignin = async (req, res) => {
         const authtoken = jwt.sign(data, secret);       
         const Update = await Account.findByIdAndUpdate(user._id, {Signedin:true, Token: authtoken ,Devices: user.Devices+1});
         // this token is what will be used for all api calls during the session for a single account
-        res.json({ UserID:user.UserID ,authtoken: authtoken ,UserType: user.UserType, name: user.Name, DepartmentID: user.DepartmentID });
+        res.json({_id:user._id, UserID:user.UserID ,authtoken: authtoken ,UserType: user.UserType, name: user.Name, DepartmentID: user.DepartmentID });
 
         // update db to make user signed in
         // can be used as a check to make it so a user cannot be signed in on multiple devices at the same time.
