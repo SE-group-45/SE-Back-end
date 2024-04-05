@@ -51,7 +51,7 @@ app.get('/api/systemadministrator/getallaccounts/:token', systemadminRoute);
 app.post('/api/systemadministrator/create/:token', systemadminRoute);
 // get a specific account by UserID
 app.get('/api/systemadministrator/getsingleaccount/:token/:userid', systemadminRoute);
-// update an account by _id - look at json response
+// update an account by _id - look at json response when changing it is like making a new account but the id is required to stay the 
 app.put('/api/systemadministrator/updateaccount/:token/:account_id', systemadminRoute);
 // delete an account by _id - look at json response
 app.delete('/api/systemadministrator/delete/:token/:account_id', systemadminRoute);
