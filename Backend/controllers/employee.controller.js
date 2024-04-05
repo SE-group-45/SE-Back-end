@@ -60,6 +60,7 @@ const CreateClaim = async (req, res) => {
         const ValidAccount = CheckAccount(req.params.token);
 
         if (ValidAccount) {
+            
             const { claim } = await Claim.create(req.body);
             return res.status(200).json({ message: 'claim successfully made' });
         }
