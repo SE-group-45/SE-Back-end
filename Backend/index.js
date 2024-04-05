@@ -75,9 +75,9 @@ app.get('/api/employee/:token/:claimid',employeeRoute);
 //
 //get specific employee claim to view
 app.get('/api/manager/:token/GetClaim/:departmentID/:claimID',managerRoute);
-// approve specific claim
+// approve specific claim, when approved the manager can otionally add a comment that the FTU should recieve to provide any additional information, managercomment should be the name if a comment is added by the manager in the json response
 app.put('/api/manager/ApproveClaim/:token/:dbclaimid',managerRoute);
-// decline a specific claim
+// decline a specific claim, when decline reason must be specified and should be contained in a json string of name rejectionReason
 app.put('/api/manager/RejectClaim/:token/:dbclaimid',managerRoute);
 // view al pending claims
 app.get('/api/manager/:token/ViewPendingClaims/:departmentID',managerRoute);
@@ -88,7 +88,7 @@ app.get('/api/manager/:token/ViewPendingClaims/:departmentID',managerRoute);
 app.get('/api/financeteamuser/getclaims/:token');
 // approve
 app.put('/api/financeteamuser/approve/:claimid/:token');
-// decline
+// decline, when decline reason must be specified and should be contained in a json string of name rejectionReason
 app.put('/api/financeteamuser/deny/:claimid/:token');
 // get single claim
 app.get('/api/financeteamuser/viewclaim/:claimid/:token');

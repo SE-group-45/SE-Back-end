@@ -61,7 +61,7 @@ const ApproveClaim = async (req, res) => {
       console.log(totalResponses, randomUser);
       const claimRecord = await Claim.findOneAndUpdate(
         { _id: req.params.dbclaimid },
-        { ClaimState: 'Approved by Manager',FTUaccount: randomUser._id},
+        { ClaimState: 'Approved by Manager',FTUaccount: randomUser._id, ManagerComments:req.body.managercomment},
         { new: true }
       );
 
@@ -107,7 +107,6 @@ const ViewPendingClaims = async (req, res) => {
         ClaimState: 'Pending'
       });
       res.json(claimRecords);
-
     }
     else {
       return res.status(403).json({ error: "invalid account" })

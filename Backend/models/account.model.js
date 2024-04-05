@@ -5,7 +5,7 @@ const AccountSchema = mongoose.Schema({
     // this wil be an id that is conected to the employees id that is used in other existing systems
     UserID:{
         type: String,
-        required: [true]
+        required: true
     },
     Name:{
         type: String,
@@ -14,7 +14,7 @@ const AccountSchema = mongoose.Schema({
     },
     Expiry: {
         type: String,
-        required: [true, 'Please enter product name']
+        required: true
     },
     Password: {
         type: String,

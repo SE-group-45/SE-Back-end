@@ -9,6 +9,16 @@ const ClaimSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    Currency:{
+        type: String,
+        required:false,
+        default:'£'
+    },
+    Amount:{
+        type: String,
+        required:false,
+        default:''
+    },
     Description: {
         type: String,
         required: true,
@@ -19,12 +29,17 @@ const ClaimSchema = mongoose.Schema({
         default:'Pending'
     },
     DepartmentID: {
-        type:'String',
+        type:String,
         reuired:true,
     },
     FTUaccount:{
         type: String,
         requires:false,
+        default:''
+    },
+    ManagerComments:{
+        type: String,
+        required:false,
         default:''
     },
     RejectionReason:{
@@ -34,7 +49,7 @@ const ClaimSchema = mongoose.Schema({
     }
     ,
     ImagePath:{
-        type:'String',
+        type:String,
         required: true,
     }
 ,
