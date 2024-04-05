@@ -6,7 +6,7 @@ When you are done with a feature update the chat and make sure it is working on 
 ***
 <b>Setup
 ***
-To run the webapp on your local machine, first pull all the files, then navigate to backend folder on one terminal and enter this.Then open a new terminal and navigate to the front end and enter the same code below
+To run the webapp on your local machine, first pull all the files into a directory you will remember.Then navigate to that directory and open it in your chosen code editor.Once the folder containing front and backend is open simply open 2 terminals within the editor.In one terminal,navigate to backend folder and enter the prompt below.In the second terminal navigate to the front end and enter the same code below
 ```
 npm i react-scripts
 ```
