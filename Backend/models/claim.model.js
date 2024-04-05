@@ -16,8 +16,7 @@ const ClaimSchema = mongoose.Schema({
     },
     Amount:{
         type: String,
-        required:false,
-        default:''
+        required:true,
     },
     Description: {
         type: String,

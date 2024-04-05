@@ -58,7 +58,7 @@ const ApproveClaim = async (req, res) => {
 
       const position=Math.random();
       const randomUser=responses[Math.floor(position*totalResponses)]
-      console.log(totalResponses, randomUser);
+      console.log(randomUser);
       const claimRecord = await Claim.findOneAndUpdate(
         { _id: req.params.dbclaimid },
         { ClaimState: 'Approved by Manager',FTUaccount: randomUser._id, ManagerComments:req.body.managercomment},
