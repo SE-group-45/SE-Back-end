@@ -119,9 +119,6 @@ const ViewPendingClaims = async (req, res) => {
 // view all prior claims
 
 
-
-
-
 module.exports = {
   GetClaim, ApproveClaim, RejectClaim, ViewPendingClaims
 }

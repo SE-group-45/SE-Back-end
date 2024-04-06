@@ -87,7 +87,7 @@ const DealWithSignin = async (req, res) => {
         else if (user.AccountState=='Inactive'){
             return res.status(400).json({errors:'user account is inactive'})
         }
-               //   check if the user is signed in on another device if so send the token
+        //   check if the user is signed in on another device if so send the token
         else if (user.Signedin) {
             const Update = await Account.findByIdAndUpdate(user._id, { Devices: user.Devices+1});
             return res.status(200).json({ _id:user._id,UserID:user.UserID ,authtoken: user.Token ,UserType: user.UserType, name: user.Name, DepartmentID: user.DepartmentID});
@@ -115,7 +115,6 @@ const DealWithSignin = async (req, res) => {
         // update db to make user signed in
         // can be used as a check to make it so a user cannot be signed in on multiple devices at the same time.
         // token i sgenerated on login and is used to track the session and in every ai call for the user in the session
-
 
         if(!Update){
             res.status(500).send("Failed to login");
