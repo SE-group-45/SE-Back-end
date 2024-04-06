@@ -16,7 +16,9 @@ function Employee(){
     // here is the user details used for all api  calls
     const user=useContext(UserContext)
     const [page, setPage] = useState(<Form></Form>) 
+    console.log(user.token)
 
+    
     return(
             <>
             <div className='Content-Header'>
@@ -27,7 +29,7 @@ function Employee(){
                   <h3>FDM Employee</h3>
                 </div>
                 <div className='Options-Container'>
-                  <div className='Claim-Parent' onClick={()=>setPage(<Form></Form>)}>
+                  <div className='Claim-Parent' onClick={()=>setPage(<Form token={user.token}></Form>)}>
                     <div>SUBMIT CLAIM</div>
                     <img className='Plus-Icon'src={Plus}></img>
                   </div>

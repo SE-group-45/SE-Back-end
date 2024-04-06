@@ -61,6 +61,7 @@ const CreateClaim = async (req, res) => {
 
         if (ValidAccount) {
             
+            console.log(req.body)
             const { claim } = await Claim.create(req.body);
             return res.status(200).json({ message: 'claim successfully made' });
         }
