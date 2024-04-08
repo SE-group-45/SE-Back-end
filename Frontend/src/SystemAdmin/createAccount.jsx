@@ -8,7 +8,7 @@ export default function createAccount() {
       
       <div class="formbold-form-wrapper">
 
-      <form action="/unfinished-endpoint" method="POST">
+      <form>
         <h2>Account info</h2>
         <h6>Please enter a unique user id</h6>
         <div class="formbold-input-flex">
