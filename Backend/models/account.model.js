@@ -14,7 +14,8 @@ const AccountSchema = mongoose.Schema({
     },
     Expiry: {
         type: String,
-        required: true
+        required: false,
+        default:'12/29'
     },
     Password: {
         type: String,
