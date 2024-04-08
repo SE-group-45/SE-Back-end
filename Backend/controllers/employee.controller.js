@@ -24,9 +24,8 @@ const GetAllClaims = async (req, res) => {
         const ValidAccount = CheckAccount(req.params.token);
         if (ValidAccount) {
             const account = await Account.find({ Token: req.params.token });
-            // get all the claims that belong to the user by the user id
-            console.log(account);
             const claims = await Claim.find({ ClaimHolderid: account.UserID });
+            console.log(claims)
             return res.status(200).json(claims);
         }
         else {
@@ -83,9 +82,8 @@ const CreateClaim = async (req, res) => {
         const ValidAccount = CheckAccount(req.params.token);
 
         if (ValidAccount) {
-            
             console.log(req.body)
-            const claim  = await Claim.create(req.body);
+            const { claim } = await Claim.create(req.body);
             return res.status(200).json({ message: 'claim successfully made' });
         }
         else {
