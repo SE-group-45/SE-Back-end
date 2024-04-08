@@ -25,7 +25,7 @@ function Employee(){
               <div className='Side-Panel'>
                 <div className='Profile-Info '>
                   <img className='Profile-Pic'src={ProfilePic}></img>
-                  <h2>HUGH TAYLOR</h2>
+                  <h2>{user.name}</h2>
                   <h3>FDM Employee</h3>
                 </div>
                 <div className='Options-Container'>

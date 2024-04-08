@@ -69,9 +69,10 @@
 
       const userobj = {
         username: userData.UserID,
-        password: '',  
+        name:userData.name,
         usertype: userData.UserType,
-        token:userData.authtoken
+        token:userData.authtoken,
+        DepartmentID: userData.DepartmentID
     }
       setUser(userobj) 
       saveUserObjectToLocalStorage(userobj)
