@@ -41,7 +41,7 @@ const GetAllAccounts = async (req, res) => {
         const validDetails = CheckAccount(req.params.token);
         if (validDetails) {
             console.log(validDetails)
-            const accounts = await Account.find({});
+            const accounts = await Account.find({UserType:{$ne: 'Admin'}});
             res.status(200).json(accounts);
         }
         else {
@@ -58,7 +58,10 @@ const GetAccount = async (req, res) => {
         const validDetails = CheckAccount(req.params.token);
         if (validDetails) {
             const { UserID } = req.params.userid;
-            const account = await Account.findById(UserID);
+            
+            const account = await Account.find({_id: req.params.userid});
+console.log(account);
+
             if (account == null) {
                 return res.status(500).json({ message: "account doesnt exist" })
             }
@@ -93,23 +96,23 @@ const GetClaim = async (req, res) => {
 
 const CreateAccount = async (req, res) => {
     try {
-        // const validDetails = CheckAccount(req.params.token);
-        // if (validDetails) {
-        //     // check if the account id exists
-        //     console.log(req.body.UserID)
-        //     const account = await Account.find({ UserID: req.body.UserID });
+        const validDetails = CheckAccount(req.params.token);
+        if (validDetails) {
+            // check if the account id exists
+            console.log(req.body.UserID)
+            const account = await Account.find({ UserID: req.body.UserID });
 
-        //     if (account == false) {
+            if (account == false) {
                 const savedAccount = await Account.create(req.body);
                 return res.status(201).json(savedAccount);
-        //     }
-        //     else {
-        //         return res.status(500).json({ message: "Account with ID already exists" });
-        //     }
-        // }
-        // else {
-        //     return res.status(500).json({ message: "Invalid account" })
-        // }
+            }
+            else {
+                return res.status(500).json({ message: "Account with ID already exists" });
+            }
+        }
+        else {
+            return res.status(500).json({ message: "Invalid account" })
+        }
 
 
     } catch (err) {
@@ -144,15 +147,16 @@ const UpdateAccount = async (req, res) => {
     try {
         const validDetails = CheckAccount(req.params.token);
         if (validDetails) {
-            const { UserID } = req.params.account_id;
+            console.log(req.params.account_id)
 
-            const account = await Account.findByIdAndUpdate(User, req.body);
-
+            
+            const account = await Account.findByIdAndUpdate(req.params.account_id, req.body);
+        
             if (!account) {
                 return res.status(404).json({ message: "Account not found" });
             }
 
-            const updatedAccount = await Account.findById(UserID);
+            const updatedAccount = await Account.findById(req.params.account_id);
             res.status(200).json(updatedAccount);
         }
         else {

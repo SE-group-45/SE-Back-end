@@ -1,5 +1,5 @@
 import React from 'react'
-import './Claim.css'
+import './Claim.css' 
 
 export default function Claim({name, date, cost, status}) {
   return (
@@ -11,6 +11,5 @@ export default function Claim({name, date, cost, status}) {
     <span>{status}</span>
     </div>
     </>
-    
   )
 }

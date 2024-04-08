@@ -8,7 +8,7 @@ import Previous from './assets/Previous.svg';
 import CreateAccount from './createAccount';
 import './systemAdmin.css';
 import AccountManagement from './AccountManagement';
-import CurrentClaims from './CurrentClaims';
+
 import PreviousClaims from './PreviousClaims';
 // on each page it needs to check the context and see if it matches the component
 // every time the api call is made the context needs to be added to the URL
@@ -23,6 +23,7 @@ function Admin(){
       <div className='Side-Panel'>
         <div className='Profile-Info '>
           <img className='Profile-Pic'src={ProfilePic}></img>
+          {/* change to user name and account type */}
           <h2>Humayun Amin</h2>
           <h3>System Admin</h3>
         </div>
