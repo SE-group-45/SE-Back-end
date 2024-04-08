@@ -88,6 +88,7 @@ export default function AccountManagement() {
         "Token":""
       });
       alert('Update made successfully')
+      setAllUsers([])
       GetAllUsers()
       
       

@@ -45,8 +45,7 @@ const ClaimSchema = mongoose.Schema({
         type: String,
         required:false,
         default:''
-    }
-    ,
+    },
     ImagePath:{
         type:String,
         required: true,

@@ -15,6 +15,7 @@ function FTU(){
     const [page, setPage] = useState(<ViewPendingClaims />);
     // here is the user details used for all api  calls
     const user=useContext(UserContext);
+    console.log(user);
 
     return(
         <>
@@ -22,8 +23,8 @@ function FTU(){
           <div className='Side-Panel'>
             <div className='Profile-Info'>
               <img className='Profile-Pic' src={ProfilePic} alt="Profile"></img>
-              <h2>John Smith</h2>
-              <h3>Line Manager</h3>
+              <h2>{user.name}</h2>
+              <h3>Finance Team User</h3>
             </div>
             <div className='Options-Container'>
               <div className='Claim-Parent' onClick={() => setPage(<ViewPendingClaims />)}> 
