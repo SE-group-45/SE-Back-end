@@ -6,6 +6,9 @@ import Search from './assets/search.png';
 import Plus from './assets/plus.svg';
 import Previous from './assets/Previous.svg';
 import ClaimResponse from './ClaimResponse.jsx';
+import './ClaimProcessing.css';
+import AccountManagement from './AccountManagement.js';
+import CurrentClaims from './CurrentClaims.js';
 import PreviousClaims from './PreviousClaims.jsx';
 import ViewPendingClaims from './ViewPendingClaims.jsx'; 
 

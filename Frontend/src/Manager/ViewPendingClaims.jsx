@@ -1,11 +1,13 @@
 import React from 'react';
-import { useState, useContext} from 'react';
+import { useState, useContext, useEffect} from 'react';
 import { UserContext } from "../App.jsx";
+import axios from "axios";
 import './ViewPendingClaims.css';
 import Claim from './Claim.jsx'; 
 import expenses from './mock-data.json';
 import ClaimResponse from './ClaimResponse.jsx';
 import "react-toggle/style.css"
+
 
 export default function ViewPendingClaims() {
   const claimarr = [];
@@ -13,18 +15,26 @@ export default function ViewPendingClaims() {
   const [page, setPage] = useState();
 
   
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await axios.get(`http://localhost:3000/api/manager/ViewPendingClaims/${1}`);         
+        console.log(response.data)
+      } catch (error) { 
+        console.error('Error:', error);
+      }
+    }
+  
+    fetchData();
+  }, []);
+
+  
+  
   const handleBlackBoxClick = () => {
     setPage()
   };
 
-  try {
-    const response = axios.post(
-      `http://localhost:3000/api/manager/${user.token}`,
-      formDataToSend
-    );
-  } catch (error) {
-    console.error('Error:', error);
-  }
+ 
 
 
   const handleClaimClick = (claimid, claimname) => {

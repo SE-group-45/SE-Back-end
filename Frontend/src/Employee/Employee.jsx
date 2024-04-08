@@ -7,7 +7,6 @@ import Plus from './assets/plus.svg';
 import Previous from './assets/Previous.svg';
 import './App.css'
 import Form from './Form';
-import CurrentClaims from './CurrentClaims'
 import PreviousClaims from './PreviousClaims';
 
 // on each page it needs to check the context and see if it matches the component

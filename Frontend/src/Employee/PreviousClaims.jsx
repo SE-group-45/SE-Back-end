@@ -79,7 +79,7 @@ export default function PreviousClaims() {
     {/* <Toggle
   defaultChecked={true} 
   onChange={()=>{settoggle(!toggle)}} /> */}
-</div>
+</div>  
     <div className='Claims-Parent'>
     <div>Pending Claims</div>
     {claimlist}

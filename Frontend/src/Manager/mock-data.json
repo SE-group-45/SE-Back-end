@@ -1,0 +1,220 @@
+{
+    "expenses": [
+        {
+            "code": "7432",
+            "name": "Office Supplies",
+            "amount": 1000,
+            "status": "Sent",
+            "date_sent": "2024-03-10"
+        },
+        {
+            "code": "2859",
+            "name": "Travel Expenses",
+            "amount": 1500,
+            "status": "Approved",
+            "date_sent": "2024-03-05"
+        },
+        {
+            "code": "9281",
+            "name": "Client Entertainment",
+            "amount": 500,
+            "status": "Refunding",
+            "date_sent": "2024-03-02"
+        },
+        {
+            "code": "6417",
+            "name": "Marketing Campaign",
+            "amount": 2000,
+            "status": "Rejected",
+            "date_sent": "2024-02-28"
+        },
+        {
+            "code": "5093",
+            "name": "Equipment Purchase",
+            "amount": 800,
+            "status": "Sent",
+            "date_sent": "2024-02-25"
+        },
+        {
+            "code": "1786",
+            "name": "Software Subscription",
+            "amount": 1200,
+            "status": "Approved",
+            "date_sent": "2024-02-20"
+        },
+        {
+            "code": "6325",
+            "name": "Training Expenses",
+            "amount": 700,
+            "status": "Refunding",
+            "date_sent": "2024-02-15"
+        },
+        {
+            "code": "4021",
+            "name": "Consulting Fees",
+            "amount": 1800,
+            "status": "Rejected",
+            "date_sent": "2024-02-10"
+        },
+        {
+            "code": "9365",
+            "name": "Legal Services",
+            "amount": 600,
+            "status": "Sent",
+            "date_sent": "2024-02-05"
+        },
+        {
+            "code": "1415",
+            "name": "Office Rent",
+            "amount": 900,
+            "status": "Approved",
+            "date_sent": "2024-01-31"
+        },
+        {
+            "code": "8796",
+            "name": "Utilities",
+            "amount": 400,
+            "status": "Refunding",
+            "date_sent": "2024-01-26"
+        },
+        {
+            "code": "6342",
+            "name": "Insurance Premiums",
+            "amount": 3000,
+            "status": "Rejected",
+            "date_sent": "2024-01-21"
+        },
+        {
+            "code": "5710",
+            "name": "Employee Benefits",
+            "amount": 1100,
+            "status": "Sent",
+            "date_sent": "2024-01-16"
+        },
+        {
+            "code": "9548",
+            "name": "Charitable Donations",
+            "amount": 1400,
+            "status": "Approved",
+            "date_sent": "2024-01-11"
+        },
+        {
+            "code": "3480",
+            "name": "Maintenance Services",
+            "amount": 950,
+            "status": "Refunding",
+            "date_sent": "2024-01-06"
+        },
+        {
+            "code": "1028",
+            "name": "Website Development",
+            "amount": 2500,
+            "status": "Rejected",
+            "date_sent": "2023-12-31"
+        },
+        {
+            "code": "6187",
+            "name": "Graphic Design",
+            "amount": 1300,
+            "status": "Sent",
+            "date_sent": "2023-12-26"
+        },
+        {
+            "code": "7394",
+            "name": "Accounting Fees",
+            "amount": 1600,
+            "status": "Approved",
+            "date_sent": "2023-12-21"
+        },
+        {
+            "code": "9257",
+            "name": "Cleaning Services",
+            "amount": 850,
+            "status": "Refunding",
+            "date_sent": "2023-12-16"
+        },
+        {
+            "code": "2907",
+            "name": "Product Samples",
+            "amount": 2200,
+            "status": "Rejected",
+            "date_sent": "2023-12-11"
+        },
+        {
+            "code": "3680",
+            "name": "Printing Services",
+            "amount": 750,
+            "status": "Unapproved",
+            "date_sent": "2023-11-05"
+        },
+        {
+            "code": "9017",
+            "name": "Licensing Fees",
+            "amount": 1700,
+            "status": "Unapproved",
+            "date_sent": "2023-10-30"
+        },
+        {
+            "code": "5943",
+            "name": "Event Sponsorship",
+            "amount": 1900,
+            "status": "Unapproved",
+            "date_sent": "2023-10-25"
+        },
+        {
+            "code": "1640",
+            "name": "Membership Dues",
+            "amount": 600,
+            "status": "Unapproved",
+            "date_sent": "2023-10-20"
+        },
+        {
+            "code": "7153",
+            "name": "Office Furniture",
+            "amount": 2800,
+            "status": "Unapproved",
+            "date_sent": "2023-09-15"
+        },
+        {
+            "code": "8725",
+            "name": "Telecommunications",
+            "amount": 950,
+            "status": "Unapproved",
+            "date_sent": "2023-09-10"
+        },
+        {
+            "code": "3035",
+            "name": "Transportation Costs",
+            "amount": 1300,
+            "status": "Unapproved",
+            "date_sent": "2023-08-05"
+        },
+        {
+            "code": "5116",
+            "name": "Public Relations",
+            "amount": 1800,
+            "status": "Unapproved",
+            "date_sent": "2023-07-30"
+        },
+        {
+            "code": "1452",
+            "name": "Employee Training",
+            "amount": 2100,
+            "status": "Unapproved",
+            "date_sent": "2023-07-25"
+        },
+        {
+            "code": "6950",
+            "name": "IT Services",
+            "amount": 1200,
+            "status": "Unapproved",
+            "date_sent": "2023-06-20"
+        },
+        {
+            "code": "4173",
+            "name": "Security Services",
+            "amount": 1700,
+            "status": "Unapproved",
+            "date_sent": "2023-06-15"
+        }
+    ]}
