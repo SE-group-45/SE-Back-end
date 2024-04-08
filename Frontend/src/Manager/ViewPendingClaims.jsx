@@ -18,8 +18,9 @@ export default function ViewPendingClaims() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(`http://localhost:3000/api/manager/ViewPendingClaims/${1}`);         
-        console.log(response.data)
+        
+        const response = await axios.get(`http://localhost:3000/api/manager/ViewPendingClaims/${user.token}/0`);         
+        console.log(response)
       } catch (error) { 
         console.error('Error:', error);
       }
