@@ -1,24 +1,22 @@
-import React from 'react';
-import { useState } from 'react';
-import './Claim.css';
-import './ClaimSmall.css';
-import ClaimResponse from './ClaimResponse';
+import React from 'react'
+import './Claim.css'
 
-export default function Claim({id,name, date, cost, status, small}) {
-  const claimClass = small ? 'small-claim' : 'Inner-Claim-Parent';
-  const handlemodal = () => {
-    setPage(<ClaimResponse></ClaimResponse>)
-  }
-
-  const [page, setPage] = useState();
-
+export default function Claim({keys, date, Currency, Amount, Description, ClaimState, ImageURL}) {
   return (
-    <span onClick={handlemodal} className={claimClass}>
-      <h3>#{id}</h3>
-      <h2>{name}</h2>
-      <div>{date}</div>
-      <div>£{cost}</div>
-      <span>{status}</span>
-    </span>
-  );
+    <>
+    <div className='Inner-Claim-Parent'>    
+      <div>
+      <b><div>Claim ID: {keys}</div></b>
+        <div>{date}</div>
+        <span>{Amount  + " "}</span>
+        <span>{Currency}</span>
+        <div>{Description}</div>
+        <span>{ClaimState}</span>
+      </div>
+        <img src={ImageURL}>  
+        </img>
+    </div>
+    </>
+    
+  )
 }

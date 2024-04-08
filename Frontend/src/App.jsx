@@ -140,8 +140,13 @@
         if (userData.authtoken){
           onLogin(userData)
         }
+        else{
+          onLogin(false)
+          saveUserObjectToLocalStorage(null)
+        }
       } catch (error) {
         onLogin(false)
+        
         console.log("Unknown error occurred during login.", error);
       }
     }
