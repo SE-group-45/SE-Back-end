@@ -20,11 +20,12 @@ const CheckAccount = async (token) => {
 
 const GetAllClaims = async (req, res) => {
     try {
+        console.log(req.params.token)
         const ValidAccount = CheckAccount(req.params.token);
         if (ValidAccount) {
-            const account = await Account.find({ Token: token });
-            // get all the claims that belong to the user by the user id
-            const claims = await Claim.find({ _id: account._id });
+            const account = await Account.find({ Token: req.params.token });
+            const claims = await Claim.find({ ClaimHolderid: account.UserID });
+            console.log(claims)
             return res.status(200).json(claims);
         }
         else {
@@ -41,9 +42,30 @@ const GetPending = async (req, res) => {
     try {
         const ValidAccount = CheckAccount(req.params.token);
         if (ValidAccount) {
-            // get all pending claims
-            const { claim } = await Claim.find(req.params.claimid);
-            return res.status(200).json(claim);
+            const account = await Account.find({ Token: req.params.token });
+            // get all the claims that belong to the user by the user id
+            console.log(account);
+            const claims = await Claim.find({ ClaimHolderid: account.UserID,ClaimState:'Pending' });
+            return res.status(200).json(claims);
+        }
+        else {
+            return res.status(400).json({ error: "invalid account" })
+        }
+    }
+    catch (err) {
+        res.status(500).json({ message: 'error getting claims' })
+    }
+};
+
+const GetClaim= async (req, res) => {
+    try {
+        const ValidAccount = CheckAccount(req.params.token);
+        if (ValidAccount) {
+            const account = await Account.find({ Token: req.params.token });
+            // get all the claims that belong to the user by the user id
+            console.log(account);
+            const claims = await Claim.find({ ClaimHolderid: account.UserID,ClaimState:'Pending' });
+            return res.status(200).json(claims);
         }
         else {
             return res.status(400).json({ error: "invalid account" })
@@ -60,7 +82,6 @@ const CreateClaim = async (req, res) => {
         const ValidAccount = CheckAccount(req.params.token);
 
         if (ValidAccount) {
-            
             console.log(req.body)
             const { claim } = await Claim.create(req.body);
             return res.status(200).json({ message: 'claim successfully made' });
@@ -79,6 +100,7 @@ module.exports = {
     // change this
     GetAllClaims,
     CreateClaim,
-    GetPending
+    GetPending,
+    GetClaim,
 
 }

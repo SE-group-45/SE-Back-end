@@ -4,4 +4,14 @@
     margin: 10px 0 10px 0;
 background-color: whitesmoke;
 border-radius: 15px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+
 }
+
+img{
+    width:10vh;
+    height:10vh
+}
+

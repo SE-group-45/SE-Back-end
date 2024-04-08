@@ -60,11 +60,6 @@
 }
 
 
-  useEffect(() => {
-    console.log(User)
-}, [User]); // This effect runs whenever User state changes
-  
-
     const handleLogin = (userData) => {
 
       const userobj = {
@@ -74,6 +69,7 @@
         token:userData.authtoken,
         DepartmentID: userData.DepartmentID
     }
+    
       setUser(userobj) 
       saveUserObjectToLocalStorage(userobj)
       setSignedin(true);

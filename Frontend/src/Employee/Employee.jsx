@@ -16,7 +16,6 @@ function Employee(){
     // here is the user details used for all api  calls
     const user=useContext(UserContext)
     const [page, setPage] = useState(<Form></Form>) 
-    console.log(user.token)
 
     
     return(
@@ -32,10 +31,6 @@ function Employee(){
                   <div className='Claim-Parent' onClick={()=>setPage(<Form token={user.token}></Form>)}>
                     <div>SUBMIT CLAIM</div>
                     <img className='Plus-Icon'src={Plus}></img>
-                  </div>
-                  <div className='Claim-Parent' onClick={()=>setPage(<CurrentClaims></CurrentClaims>)}>
-                    <div>VIEW CLAIM</div>
-                    <img className='Search-Icon'src={Search}></img>
                   </div>
                   <div className='Claim-Parent' onClick={()=>setPage(<PreviousClaims></PreviousClaims>)}>
                     <div>PREVIOUS CLAIMS</div>

@@ -68,7 +68,9 @@ app.get('/api/employee/:token',employeeRoute);
 // make claim
 app.post('/api/employee/:token',employeeRoute);
 // get all pending claims 
-app.get('/api/employee/:token/:claimid',employeeRoute);
+app.get('/api/employee/pending/:token',employeeRoute);
+// get single claim
+app.get('/api/employee/singleclaim/:token',employeeRoute);
 
 
 // MANAGER page

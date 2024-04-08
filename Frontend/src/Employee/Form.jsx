@@ -2,13 +2,26 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { UserContext } from "../App.jsx";
 import './Form.css';
+import Modal from 'react-modal';
+import Toggle from 'react-toggle'
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
 
 export default function Form({ token }) {
 
-
-   
       
   const user=useContext(UserContext)
+
+  console.log(user.name)
 
   const [formData, setFormData] = useState({
     currency: 'GBP',
@@ -27,7 +40,6 @@ export default function Form({ token }) {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    console.log(file)
     const reader = new FileReader();
   
     reader.addEventListener('load', () => {
@@ -57,7 +69,6 @@ export default function Form({ token }) {
       ImagePath:formData.receipt
       }
 
-
       console.log(formDataToSend)
 
 
@@ -66,7 +77,6 @@ export default function Form({ token }) {
         formDataToSend
       );
 
-      console.log('API Response:', response.data);
       // Handle response as needed
     } catch (error) {
       console.error('Error:', error);
@@ -74,8 +84,21 @@ export default function Form({ token }) {
     }
   };
 
+
+    const [isFlipped, setIsFlipped] = useState(false);
+  
+    const handleClick = () => {
+      setIsFlipped(!isFlipped);
+    };
+  
+
   return (
+    
     <div className='Form-Parent'>
+       <Toggle
+    defaultChecked={true}
+    onChange={()=>{}} />
+  <span>Wrapper label tag</span>
       <h1>Submit a claim</h1>
       <div className="formbold-main-wrapper">
         <div className="formbold-form-wrapper">
@@ -132,6 +155,6 @@ export default function Form({ token }) {
           </form>
         </div>
       </div>
-    </div>
+      </div>
   );
 }
