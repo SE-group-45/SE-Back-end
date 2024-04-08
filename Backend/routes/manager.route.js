@@ -14,6 +14,6 @@ router.put('/ApproveClaim/:token/:dbclaimid', ApproveClaim);
 
 router.put('/RejectClaim/:token/:dbclaimid', RejectClaim);
 
-router.get('/ViewPendingClaims/:departmentID', ViewPendingClaims);
+router.get('/ViewPendingClaims/:token/:departmentID', ViewPendingClaims);
 
 module.exports = router;

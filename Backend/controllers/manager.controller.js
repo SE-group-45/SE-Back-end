@@ -103,7 +103,7 @@ const ViewPendingClaims = async (req, res) => {
 
     if (ValidAccount) {
       const claimRecords = await Claim.find({
-        departmentID: req.params.departmentID,
+        DepartmentID: req.params.departmentID,
         ClaimState: 'Pending'
       });
       res.json(claimRecords);
