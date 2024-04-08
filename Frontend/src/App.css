@@ -1,0 +1,11 @@
+.LogOut{
+    background-color:purple;    
+    color:white; 
+    position: absolute;
+    top:0;
+    right:0;
+    margin:10px;
+    background: rgb(166,153,243);
+    background: linear-gradient(166deg, rgba(166,153,243,1) 0%, rgba(215,50,235,1) 100%);
+
+}

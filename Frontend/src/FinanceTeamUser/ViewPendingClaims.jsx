@@ -4,6 +4,7 @@ import './ViewPendingClaims.css';
 import Claim from './Claim.jsx'; 
 import expenses from './mock-data.json';
 import ClaimResponse from './ClaimResponse.jsx';
+import "react-toggle/style.css"
 
 export default function ViewPendingClaims() {
   const claimarr = [];

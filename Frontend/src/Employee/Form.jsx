@@ -2,19 +2,9 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { UserContext } from "../App.jsx";
 import './Form.css';
-import Modal from 'react-modal';
-import Toggle from 'react-toggle'
 
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-  },
-};
+
+
 
 export default function Form({ token }) {
 
@@ -95,10 +85,6 @@ export default function Form({ token }) {
   return (
     
     <div className='Form-Parent'>
-       <Toggle
-    defaultChecked={true}
-    onChange={()=>{}} />
-  <span>Wrapper label tag</span>
       <h1>Submit a claim</h1>
       <div className="formbold-main-wrapper">
         <div className="formbold-form-wrapper">

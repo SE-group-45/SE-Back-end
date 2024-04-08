@@ -110,10 +110,10 @@
     } else {
       return (
         <UserContext.Provider value={User}>
-          {User.usertype === 'Employee' &&  <div><button onClick={()=>handleLogout(User)}>LOG OUT</button><Employee/></div>}
-          {User.usertype === 'Manager' &&  <div><button onClick={()=>handleLogout(User)}>LOG OUT</button><Manager/></div>}
-          {User.usertype === 'FTU' && <div><button onClick={()=>handleLogout(User)}>LOG OUT</button><FTU/></div>}
-          {User.usertype === 'Admin' && <div><button onClick={()=>handleLogout(User)}>LOG OUT</button><Admin/></div>}
+          {User.usertype === 'Employee' &&  <div><button className='LogOut' onClick={()=>handleLogout(User)}>LOG OUT</button><Employee/></div>}
+          {User.usertype === 'Manager' &&  <div><button className='LogOut' onClick={()=>handleLogout(User)}>LOG OUT</button><Manager/></div>}
+          {User.usertype === 'FTU' && <div><button className='LogOut' onClick={()=>handleLogout(User)}>LOG OUT</button><FTU/></div>}
+          {User.usertype === 'Admin' && <div><button className='LogOut' onClick={()=>handleLogout(User)}>LOG OUT</button><Admin/></div>}
         </UserContext.Provider>
       );
     }
