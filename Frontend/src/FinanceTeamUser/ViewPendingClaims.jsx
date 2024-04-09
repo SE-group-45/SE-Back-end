@@ -101,7 +101,7 @@ export default function ViewPendingClaims() {
 
 <<<<<<< HEAD
 
-
+ 
   for (let i = 0; i < expenses.expenses.length; i++) {
     if (expenses.expenses[i].status === 'Unapproved') {
       claimarr.push(
