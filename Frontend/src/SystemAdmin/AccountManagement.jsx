@@ -72,8 +72,7 @@ export default function AccountManagement() {
     setChosenUser(User);
     setAllUsers([]);
   }
-
-
+  
   async function handleUpdateaccountform(event) {
     event.preventDefault();
     try {

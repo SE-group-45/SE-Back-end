@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useContext} from 'react';
+import { useState, useContext,useEffect} from 'react';
 import { UserContext } from "../App.jsx";
 import './ViewPendingClaims.css';
 import Claim from './Claim.jsx'; 
@@ -12,19 +12,35 @@ export default function ViewPendingClaims() {
   const user=useContext(UserContext)
   const [page, setPage] = useState();
 
-  
+  const [AllClaims,setAllClaims] = useState();
+  const [ChosenClaim,setChosenClaim] = useState();
+
+
+  async function GetAllClaims(){
+    try {
+      const result = await axios.get(`http://localhost:3000/api/financeteamuser/getclaims/${user.token}`);
+      setAllClaims(result.data);
+      
+    } catch (error) {
+      console.error('Error fetching all users:', error);
+      // Deal with error
+      // Make alert to display error
+      // Logout and redirect to login
+    }
+  }
+
+
+  useEffect(()=>{
+    GetAllClaims();
+  },[])
+
+
   const handleBlackBoxClick = () => {
     setPage()
   };
 
-  try {
-    const response = axios.post(
-      `http://localhost:3000/api/manager/${user.token}`,
-      formDataToSend
-    );
-  } catch (error) {
-    console.error('Error:', error);
-  }
+
+ 
 
 
   const handleClaimClick = (claimid, claimname) => {
@@ -35,12 +51,14 @@ export default function ViewPendingClaims() {
       </div>);
   };
 
+
+
   for (let i = 0; i < expenses.expenses.length; i++) {
     if (expenses.expenses[i].status === 'Unapproved') {
       claimarr.push(
         <button onClick={() => handleClaimClick(expenses.expenses[i].code, expenses.expenses[i].name )}>       
           <Claim key={i}
-          id={expenses.expenses[i].code}
+            id={expenses.expenses[i].code}
             name={expenses.expenses[i].name}
             date={expenses.expenses[i].date_sent}
             cost={expenses.expenses[i].amount}
@@ -54,13 +72,21 @@ export default function ViewPendingClaims() {
   }
 
   return (
-    <div>
+<>
+{
+  (GetAllClaims.length !==0)&&(
+    
+
+
+  )
+}
+  <div>
       {page}
     <div className='Form-Parent'>
       <h1>Claimants Awaiting Processing</h1>
       <div className='Pending-Claim-Parent'>{claimarr}</div>
     </div>
     </div>
-
+</>
   );
 }

@@ -117,8 +117,25 @@ const ViewPendingClaims = async (req, res) => {
 };
 
 // view all prior claims
+const ViewPreviousClaims = async (req, res) => {
+  try {
+    const ValidAccount = CheckAccount(req.params.token);
 
+    if (ValidAccount) {
+      const claimRecords = await Claim.find({
+        DepartmentID: req.params.departmentID,
+        ClaimState: {$ne:'Pending'}
+      });
+      res.json(claimRecords);
+    }
+    else {
+      return res.status(403).json({ error: "invalid account" })
+    }
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
 
 module.exports = {
-  GetClaim, ApproveClaim, RejectClaim, ViewPendingClaims
+  GetClaim, ApproveClaim, RejectClaim, ViewPendingClaims,ViewPreviousClaims,
 }

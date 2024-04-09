@@ -83,11 +83,15 @@ app.put('/api/manager/ApproveClaim/:token/:dbclaimid',managerRoute);
 app.put('/api/manager/RejectClaim/:token/:dbclaimid',managerRoute);
 // view al pending claims
 app.get('/api/manager/:token/ViewPendingClaims/:departmentID',managerRoute);
+// view all previous claims
+app.get('/api/manager/:token/ViewPreviousClaims/:departmentID',managerRoute);
 
 
 //FINANCE TEAM USER page
-//get all claims assigned to FTU
-app.get('/api/financeteamuser/getclaims/:token');
+//get all pending claims assigned to FTU
+app.get('/api/financeteamuser/getpendingclaims/:token');
+// get all non pending claims
+app.get('/api/financeteamuser/getpreviousclaims/:token');
 // approve
 app.put('/api/financeteamuser/approve/:claimid/:token');
 // decline, when decline reason must be specified and should be contained in a json string of name rejectionReason

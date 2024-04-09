@@ -4,7 +4,6 @@ import cross from './assets/cross.png'
 
 export default function ClaimResponse({claimid, claimname, onBlackBoxClick }) {
   return (
-
       <div className="FormWrapper">
       <div className='meow' onClick={onBlackBoxClick} style={{padding:'20px',width:'50px', height:'50px', position:'absolute', top:0, right:0, display:'flex', justifyContent:'center', alignItems:'center'}}>
       <img src={cross}  style={{width:'20px', height:'20px'}}></img>

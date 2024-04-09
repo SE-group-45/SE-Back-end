@@ -3,7 +3,7 @@ const Account = require('../models/account.model.js');
 const Claim = require('../models/claim.model.js');
 
 // call the functions 
-const {GetClaim, ApproveClaim, RejectClaim, ViewPendingClaims}=require('../controllers/manager.controller.js');
+const {GetClaim, ApproveClaim, RejectClaim, ViewPendingClaims,ViewPreviousClaims}=require('../controllers/manager.controller.js');
 
 // connect router
 const router = express.Router();
@@ -15,5 +15,8 @@ router.put('/ApproveClaim/:token/:dbclaimid', ApproveClaim);
 router.put('/RejectClaim/:token/:dbclaimid', RejectClaim);
 
 router.get('/ViewPendingClaims/:token/:departmentID', ViewPendingClaims);
+
+router.get('/ViewPreviousClaims/:token/:departmentID', ViewPreviousClaims);
+
 
 module.exports = router;
