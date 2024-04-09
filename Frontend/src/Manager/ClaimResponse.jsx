@@ -30,7 +30,6 @@ export default function ClaimResponse({ claimid, claimname, onBlackBoxClick }) {
       rejectclaim(claimid, explanation)
     }
 
-
     console.log('Claim Response:', claimResponse);
     console.log('Explanation:', explanation);
   };

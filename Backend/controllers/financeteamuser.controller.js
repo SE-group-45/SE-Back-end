@@ -106,20 +106,20 @@ const GetClaims = async (req, res) => {
         const ValidAccount = CheckAccount(req.params.token);
 
         if (ValidAccount) {
-            const account = await Account.find({ Token: req.params.token });
-            const claimRecord = await Claim.findOne({
-                FTUaccount: account._id,
-                _id: req.params.claimid
-            });
+            const account = await Account.findOne({Token: req.params.token});
+
+
+                const claimRecords = await Claim.find({
+                    FTUaccount:account._id
+                });
+               
             //   check if the account and claim match
-            if (!claimRecord) {
-                return res.status(403).json({ error: "request denied" })
+            if (!claimRecords) {
+                return res.status(204).json({ message: "Account has no claims to prcess yet" })
             }
-            const claimRecords = await Claim.find({
-                FTUaccount: account._id,
-                ClaimState: 'Approve by Manager'
-            });
-            res.json(claimRecords);
+            else{
+                res.json(claimRecords);
+            }
         }
         else {
             return res.status(403).json({ error: "invalid account" })
@@ -131,5 +131,5 @@ const GetClaims = async (req, res) => {
 
 
 module.exports = {
-    GetClaim, ApproveClaim, RejectClaim, GetClaims
+    GetClaim, ApproveClaim, RejectClaim, GetClaims
 }
