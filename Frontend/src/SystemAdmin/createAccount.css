@@ -17,10 +17,10 @@
 }
 
 
-/* Styles for larger screens */
+
 @media only screen and (max-width: 768px) {
     .form-table {
-        width: 100%; /* Make the form full width on smaller screens */
+        width: 100%; 
     }
 
     #userid {

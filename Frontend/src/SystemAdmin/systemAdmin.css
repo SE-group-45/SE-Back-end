@@ -94,8 +94,8 @@ background-color: whitesmoke
   }
 
   .Form-Parent {
-    width: 100vw; /* Make the form take full width */
-    padding: 20px; /* Add some padding around the form */
+    width: 100vw; 
+    padding: 20px; 
   }
 
   #userid{
@@ -103,20 +103,20 @@ background-color: whitesmoke
   }
 }
 
-/* For very small screens like iPhones */
+
 @media (max-width: 480px) {
   .Profile-Pic {
-    width: 15vw; /* Increase size for visibility */
+    width: 15vw; 
     height: 15vw;
   }
 
-  /* Adjustments to font sizes and other elements can be added here */
+ 
 }
 
-/* Styles for very small screens, such as iPhone 12 Pro */
+
 @media (max-width: 390px) {
   .Content-Header {
-    flex-direction: row; /* Stack header and form vertically */
+    flex-direction: row; 
   }
 
   .Side-Panel {
@@ -138,8 +138,8 @@ background-color: whitesmoke
   }
 
   .Claim-Parent img {
-    width: 25px; /* Adjust icon size */
-    height: 25px; /* Maintain aspect ratio */
+    width: 25px; 
+    height: 25px;
   }
 
   .Form-Parent {
