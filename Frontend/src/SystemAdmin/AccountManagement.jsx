@@ -189,7 +189,7 @@ export default function AccountManagement() {
                     Account state: {chosenUser.AccountState}
                   </div>
 
-                  <button onClick={() => handledelete()}>Delete account</button>
+                  <button onClick={() => handledelete()} id='delete'>Delete account</button>
                 </div>
 
                 <div>
