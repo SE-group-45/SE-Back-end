@@ -1,10 +1,11 @@
 import React from "react";
 import "./style.css";
+import "./TopNav.css";
 
 function TopNav() {
   return (
     <>
-      <header className="header ">
+      <header className="header">
         <div className="headerLeft" bis_skin_checked="1">
           <h1>
             <a className="fw-bolder" href="/#">

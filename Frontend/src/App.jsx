@@ -3,14 +3,24 @@
   import { useState, createContext, useEffect } from 'react'
   import reactLogo from './assets/react.svg'
   import viteLogo from '/vite.svg'
-  import './App.css'
+  
   import axios from 'axios';
-  import "./style.css";
+  
   import TopNav from "./TopNav.jsx";
   import Employee from './Employee/Employee.jsx';
   import Manager from './Manager/Manager.jsx';
   import Admin from './SystemAdmin/Admin.jsx';
   import FTU from './FinanceTeamUser/FTU.jsx';
+
+  // css pages
+  // these do nothing? 
+  //import './App.css'
+
+  // effects just the form
+  //import "./style.css";
+
+  // new css page
+  import "./TopNav.css";
 
 
   export const UserContext = createContext()
