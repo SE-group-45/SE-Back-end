@@ -1,3 +1,23 @@
+/* page not in use */
+
+/* background */
+
+body{
+    margin: 0;
+    padding: 0;
+  }
+
+/* nav bar */
+TopNav{
+    height:10vh;
+    width: 100vw;
+    background: rgb(106,92,190);
+    background: linear-gradient(166deg, rgba(106,92,190,1) 0%, rgba(137,122,255,1) 47%, rgba(217,122,229,1) 99%);
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
 .LogOut{
     background-color:purple;    
     color:white; 
@@ -8,4 +28,15 @@
     background: rgb(166,153,243);
     background: linear-gradient(166deg, rgba(166,153,243,1) 0%, rgba(215,50,235,1) 100%);
 
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    color: #b62424;
+    align-items: center;
+    justify-content: space-between;
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 1.5em;
 }

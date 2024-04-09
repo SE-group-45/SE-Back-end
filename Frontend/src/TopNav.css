@@ -1,0 +1,73 @@
+@font-face {
+    font-family: Termina;
+    src: url("../../fonts/TerminaTest-Demi.otf") format("opentype");
+}
+@font-face {
+    font-family: Termina-light;
+    src: url("../../fonts/TerminaTest-Light.otf") format("opentype");
+}
+
+/* page background + form text
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+*/
+body {
+    background: rgb(106,92,190);
+    background: rgb(198, 198, 198);
+    color: rgb(0, 0, 0);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+}
+
+/* purple header 
+    margin: auto;
+    padding: 1.5em;
+    align-items: center;
+*/
+.header {
+    background-color: rgb(22, 3, 133);
+    background: linear-gradient(166deg, rgba(106,92,190,1) 0%, rgba(137,122,255,1) 47%, rgba(217,122,229,1) 99%);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 200vw;
+    height: 100%;
+    
+}
+
+.fw-bolder {
+    color: black;
+    
+    
+}
+/* Welcome back section
+.signinSection {
+    
+}
+*/
+
+.formContainer {
+    border-radius: 2rem;
+    background: white;
+}
+
+.inputField {
+    background: white;
+}
+
+.loginButton {
+    color: black;
+    font-family: Termina;
+    font-weight: 900;
+    border-radius: 1rem;
+    background: linear-gradient(166deg, rgba(106,92,190,1) 0%, rgba(137,122,255,1) 47%, rgba(217,122,229,1) 99%);
+}
+
+.inputBackground {
+    background: black;
+    border-radius: 1rem;
+}
+
