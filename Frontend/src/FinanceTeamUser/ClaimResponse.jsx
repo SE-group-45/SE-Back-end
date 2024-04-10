@@ -62,11 +62,6 @@ const handleBlackBoxClick = () => {
   
 
   return (
-<<<<<<< HEAD
-      <div className="FormWrapper">
-      <div className='meow' onClick={onBlackBoxClick} style={{padding:'20px',width:'50px', height:'50px', position:'absolute', top:0, right:0, display:'flex', justifyContent:'center', alignItems:'center'}}>
-      <img src={cross}  style={{width:'20px', height:'20px'}}></img>
-=======
     <div className="FormWrapper">
       <div className='meow' onClick={onBlackBoxClick} style={{ padding: '20px', width: '50px', height: '50px', position: 'absolute', top: 0, right: 0, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <img src={cross} style={{ width: '20px', height: '20px' }} alt="Cross" />
@@ -87,7 +82,6 @@ const handleBlackBoxClick = () => {
           </div>
           <button type="submit" className="FormButton">Submit</button>
         </form>
->>>>>>> b5038198c0f9f228222266539c81018bf5606f0a
       </div>
     </div>
     

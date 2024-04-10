@@ -59,7 +59,7 @@ const ApproveClaim = async (req, res) => {
             }
             const Updatedclaim = await Claim.findOneAndUpdate(
                 { _id: req.params.claimid },
-                { ClaimState: 'Approved by FTU' },
+                { ClaimState: 'Approved by FTU'},
                 { new: true }
             );
             res.json(Updatedclaim);
