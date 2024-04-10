@@ -56,7 +56,6 @@ export default function PreviousClaims() {
     fetchData();
   }, []);
   
-
   return (
     <>
     <h2>Previous Claims you approved</h2>

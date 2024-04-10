@@ -37,8 +37,8 @@ export default function AccountManagement() {
       }
       else if (!isNaN(input)) {
         // search by id
-
-        const filteredusers = allUsers.filter(allUsers => allUsers.UserID === input)
+        console.log(input);
+        const filteredusers = allUsers.filter(allUsers => allUsers.UserID.includes(input));
         if (filteredusers.length == 0) {
 
           alert('the entered values doesnt correlate to any users name or id');
@@ -188,12 +188,10 @@ export default function AccountManagement() {
                   <div>
                     Account state: {chosenUser.AccountState}
                   </div>
-
-                  <button onClick={() => handledelete()} id='delete'>Delete account</button>
                 </div>
 
                 <div>
-                  <h1>Chnage details here</h1>
+                  <h1>Change details here</h1>
                   <form onSubmit={handleUpdateaccountform}>
                     <p>UserID</p>
                     <input type="text" name='UserID' id='userid' placeholder={chosenUser.UserID} onChange={handleFormChange} />

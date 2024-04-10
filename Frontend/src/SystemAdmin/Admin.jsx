@@ -24,7 +24,7 @@ function Admin(){
         <div className='Profile-Info '>
           <img className='Profile-Pic'src={ProfilePic}></img>
           {/* change to user name and account type */}
-          <h2>Humayun Amin</h2>
+          <h2>{user.name}</h2>
           <h3>System Admin</h3>
         </div>
         <div className='Options-Container'>
