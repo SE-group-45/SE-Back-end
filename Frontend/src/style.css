@@ -164,3 +164,9 @@ a {
 .loginButton:hover {
     transform: translate(-0.2em, -0.2em); /* Move button up by 5px */
 }
+
+
+header{
+    height: 20vh;
+    color: white;
+  }

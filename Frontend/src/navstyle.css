@@ -1,0 +1,20 @@
+header{
+    height: 20vh;
+    display: flex !important;
+    justify-content:space-between !important;
+    width: 200vw !important;
+    margin: 0 !important;
+  }
+
+.logoimg{
+    height: 50px;
+    width:180px;
+    filter: opacity(0.3) drop-shadow(0 0 0 #283858) drop-shadow(0 0 0 #283858)drop-shadow(0 0 0 #283858);
+}
+
+.LogoWrappers{
+    display: flex;
+    align-items: baseline;
+    
+}
+

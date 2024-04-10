@@ -1,30 +1,32 @@
 import React from "react";
-import "./style.css";
+import "./navstyle.css";
+import fdmlogo from '../public/FDM.png';
+import './style.css'
 
 function TopNav() {
   return (
     <>
-      <header className="header ">
-        <div className="headerLeft" bis_skin_checked="1">
-          <h1>
-            <a className="fw-bolder" href="/#">
-              Expensify
-            </a>
-          </h1> 
+      <header className="header">
+        <div className="LogoWrappers">     
+          <img className='logoimg' src={fdmlogo}></img><h1>x Expensify</h1>
+          <div className="headerLeft" bis_skin_checked="1">   
+        </div>
+         
+           
         </div>
         <div className="headerRight" bis_skin_checked="1">
           <h4>
-            <a className="fw-bolder" href="/team">
+            <a className="fw-bolder">
               Our Team
             </a>
           </h4>
           <h4>
-            <a className="fw-bolder" href="/services">
+            <a className="fw-bolder">
               Services
             </a>
           </h4>
           <h4>
-            <a className="fw-bolder" href="/contact">
+            <a className="fw-bolder">
               Contact
             </a>
           </h4>
@@ -37,19 +39,6 @@ function TopNav() {
           </div>
         </div>
       </header>
-      <div
-        className="signinSection "
-        style={{ fontFamily: "Termina" }}
-        bis_skin_checked="1"
-      >
-        <h1>Welcome back!</h1>
-        <p>
-          don't have an account?
-          <a className="signupLink mx-2" href="/signup">
-            Sign up
-          </a>
-        </p>
-      </div>
     </>
   );
 }
