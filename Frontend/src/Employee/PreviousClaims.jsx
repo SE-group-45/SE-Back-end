@@ -55,6 +55,7 @@ export default function PreviousClaims() {
               Description={item.Description} 
               ClaimState={item.ClaimState} 
               ImageURL={item.ImagePath}
+              Reason={item.Comments}
             />
           );
         }
@@ -83,7 +84,7 @@ export default function PreviousClaims() {
     <div className='Claims-Parent'>
     <div>Pending Claims</div>
     {claimlist}
-    <div>Approved Claims</div>
+    <div>Previous  Claims</div>
     {approvedclaimlist}
     </div>
     </>
