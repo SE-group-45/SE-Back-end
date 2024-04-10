@@ -164,9 +164,10 @@ export default function AccountManagement() {
               filteredclaims.map((value, key) => (
 
                 <div key={key} className="Inner-Claim-Parent">
-                     <h2>{value.ClaimHolderName}</h2>
-                  <div>{value.Amount}</div>
-                  <div>£{value.ClaimState}</div>
+                  <h2>{value.ClaimHolderName}</h2>
+        
+                  <div>£{value.Amount}</div>
+                  <div>{value.ClaimState}</div>
                   <span>{value.Description}</span>
                 </div>))
             }

@@ -35,12 +35,14 @@ export default function PreviousClaims() {
           temparr.push(
             <Claim 
               key={item._id} 
+              name={item.ClaimHolderName}
               date={item.createdAt.substring(0, item.createdAt.indexOf('T'))} 
               Amount={item.Amount} 
               Currency={item.Currency} 
               Description={item.Description} 
               ClaimState={item.ClaimState} 
               ImageURL={item.ImagePath}
+              Reason={item.Comments}
             />
           );
         }

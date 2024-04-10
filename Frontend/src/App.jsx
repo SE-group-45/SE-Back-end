@@ -136,17 +136,20 @@
           'http://localhost:3000/api/login',
           {UserID: email, Password: password}
         );
-  
+        
         const userData = response.data; // Assuming response data contains user information
         console.log("Here is the userdata" + userData);
         if (userData.authtoken){
           onLogin(userData)
         }
+        
         else{
           saveUserObjectToLocalStorage(null)
           setwrongpass(<div style={{color:'red'}}>Incorrect password or email</div>)
         }
       } catch (error) {
+        //if the account is inactive
+        alert(error.response.data.errors);
         setwrongpass(<div style={{color:'red'}}>Incorrect password or email</div>)
         console.log("Unknown error occurred during login.", error);
       }

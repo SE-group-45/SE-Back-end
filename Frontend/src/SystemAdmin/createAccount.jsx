@@ -129,7 +129,7 @@ export default function createAccount() {
 
 
         <div class="formbold-mb-3">
-          <label for="age" class="formbold-form-label">User type</label>
+          <label for="age" class="formbold-form-label">Account state</label>
           <select name="" value={User.AccountState} id="" onChange={handlestatechange}>
                       <option value="">-- Please select --</option>
                       <option value="Active">Active</option>

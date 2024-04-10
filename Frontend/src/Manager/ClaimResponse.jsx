@@ -41,6 +41,7 @@ export default function ClaimResponse({ claimid, claimname, onBlackBoxClick, ima
       const response = await axios.put(`http://localhost:3000/api/manager/RejectClaim/${user.token}/${claimid}`,{comments:reason});                
       console.log(response.data)
       onBlackBoxClick()
+      alert('claim successfully assessed')
     } catch (error) { 
       console.error('Error:', error);
     }
@@ -51,6 +52,7 @@ export default function ClaimResponse({ claimid, claimname, onBlackBoxClick, ima
       const response = await axios.put(`http://localhost:3000/api/manager/ApproveClaim/${user.token}/${claimid}`,{comments:reason});                  
       console.log(response.data)
       onBlackBoxClick()
+      alert('claim successfully assessed')
     } catch (error) { 
       console.error('Error:', error);
     }

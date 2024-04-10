@@ -17,6 +17,7 @@ export default function ClaimResponse({ claimid, claimname, onBlackBoxClick }) {
 
   const handleExplanationChange = (event) => {
     setExplanation(event.target.value);
+    
   };
 
   const handleSubmit = (event) => {
@@ -36,9 +37,10 @@ export default function ClaimResponse({ claimid, claimname, onBlackBoxClick }) {
 
   async function rejectclaim(id, reason){
     try {
-      const response = await axios.put(`http://localhost:3000/api/financeteamuser/reject/${id}/${user.token}`,{rejectionReason:reason});                
+      const response = await axios.put(`http://localhost:3000/api/financeteamuser/reject/${id}/${user.token}`,{comments:reason});                
       console.log(response.data)
       onBlackBoxClick()
+      alert('claim successfully assessed')
     } catch (error) { 
       console.error('Error:', error);
     }
@@ -46,14 +48,14 @@ export default function ClaimResponse({ claimid, claimname, onBlackBoxClick }) {
 
   async function acceptclaim(id, reason){
     try {
-      const response = await axios.put(`http://localhost:3000/api/financeteamuser/approve/${id}/${user.token}`,{rejectionReason:reason});                  
+      const response = await axios.put(`http://localhost:3000/api/financeteamuser/approve/${id}/${user.token}`,{comments:reason});                  
       console.log(response.data)
       onBlackBoxClick()
+      alert('claim successfully assessed')
     } catch (error) { 
       console.error('Error:', error);
     }
   }
-
 
 const handleBlackBoxClick = () => {
   setPage()

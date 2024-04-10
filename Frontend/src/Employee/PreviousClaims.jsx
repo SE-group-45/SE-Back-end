@@ -32,7 +32,7 @@ export default function PreviousClaims() {
         let tempapprovedarr = []
 
         for (const item of response.data) {
-          if (item.ClaimState == "Pending"){
+          if (item.ClaimState == "Pending"|| item.ClaimState == "Approved by Manager"){
           temparr.push(
             <Claim 
               key={item._id} 
@@ -82,6 +82,7 @@ export default function PreviousClaims() {
   onChange={()=>{settoggle(!toggle)}} /> */}
 </div>  
     <div className='Claims-Parent'>
+      <b>Note: A claim will only be reimbursed if its state is <e>'Approved by FTU'</e></b>
     <div>Pending Claims</div>
     {claimlist}
     <div>Previous  Claims</div>

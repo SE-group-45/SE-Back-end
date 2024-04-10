@@ -28,6 +28,7 @@ export default function ViewPendingClaims() {
           <button onClick={() =>handleClaimClick(item._id, item.Description, item.ImagePath)}>       
           <Claim 
           key={item._id}  
+          name={item.ClaimHolderName}
           date={item.createdAt.substring(0, item.createdAt.indexOf('T'))} 
           Amount={item.Amount} 
           Currency={item.Currency} 

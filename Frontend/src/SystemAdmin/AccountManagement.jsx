@@ -138,16 +138,17 @@ export default function AccountManagement() {
             {/* deal with invalid id /name*/}
 
             <div className="search-container">
-              <input id="usernameorid" type="text" placeholder="Search by UserID or name..." value={input} onChange={(e) => setInput(e.target.value)} />
+              <input className='searchbar' id="usernameorid" type="text" placeholder="Search by UserID or name..." value={input} onChange={(e) => setInput(e.target.value)} />
+               <button className='searchbutton' onClick={() => Search()}>search</button>
             </div>
-            <button onClick={() => Search()}>search</button>
+           
 
             {
               allUsers.map((value, key) => (
 
                 <div key={key} className="Inner-Claim-Parent">
                   {console.log(key)}
-                  <button
+                  <button className='choose-account-button'
                     onClick={() => handleChosenAccount(value)}
                   >
                     name: {value.Name}
@@ -164,7 +165,7 @@ export default function AccountManagement() {
       {
         (chosenUser.length !== 0) && (
           <div className='Claims-Parent'>
-            <button onClick={GetAllUsers}>Return</button>
+            <button onClick={GetAllUsers} className='return-button'>Return</button>
             <div className="Inner-Claim-Parent">
               <div className='changeAccount-container'>
                 <div>
@@ -220,7 +221,7 @@ export default function AccountManagement() {
                       <option value="Flagged">Flagged</option>
                     </select>
                     
-                    <button type='submit'>Change</button>
+                    <button type='submit' className='change-button'>Change</button>
                   </form>
                 </div>
               </div>
