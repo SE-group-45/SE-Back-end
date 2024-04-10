@@ -20,14 +20,14 @@ export default function ViewPendingClaims() {
     async function fetchData() {
       try {
   
-        const response = await axios.get(`http://localhost:3000/api/manager/ViewPendingClaims/${user.token}/0`);         
+        const response = await axios.get(`http://localhost:3000/api/manager/ViewPendingClaims/${user.token}/${user.DepartmentID}`);         
         console.log(response.data)
         
         for (const item of response.data) {
           claimarr.push(
-          <button onClick={() =>handleClaimClick(item._id, item.Description)}>       
+          <button onClick={() =>handleClaimClick(item._id, item.Description, item.ImagePath)}>       
           <Claim 
-          key={item._id} 
+          key={item._id}  
           date={item.createdAt.substring(0, item.createdAt.indexOf('T'))} 
           Amount={item.Amount} 
           Currency={item.Currency} 
@@ -60,10 +60,10 @@ export default function ViewPendingClaims() {
  
 
 
-  const handleClaimClick = (claimid, claimname) => {
+  const handleClaimClick = (claimid, claimname, imageURL) => {
     setPage(<div>
       
-      <ClaimResponse claimid={claimid} claimname={claimname} onBlackBoxClick={handleBlackBoxClick} >
+      <ClaimResponse claimid={claimid} claimname={claimname} onBlackBoxClick={handleBlackBoxClick} imageURL={imageURL}>
       </ClaimResponse>
       </div>);
   };

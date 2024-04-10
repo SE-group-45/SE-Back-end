@@ -4,7 +4,7 @@ import { UserContext } from "../App.jsx";
 import axios from "axios";
 import './ViewPendingClaims.css';
 import Claim from './Claim.jsx'; 
-import expenses from './mock-data.json';
+
 import ClaimResponse from './ClaimResponse.jsx';
 import "react-toggle/style.css"
 
@@ -20,7 +20,7 @@ export default function ViewPendingClaims() {
     async function fetchData() {
       try {
 
-        const response = await axios.get(`http://localhost:3000/api/financeteamuser/getclaims/${user.token}`);         
+        const response = await axios.get(`http://localhost:3000/api/financeteamuser/getpendingclaims/${user.token}`);         
         console.log(response.data)
       
         for (const item of response.data) {
@@ -65,7 +65,10 @@ export default function ViewPendingClaims() {
 
   return (
 <>
+{
+  
 
+}
   <div>
       {page}
     <div className='Form-Parent'>

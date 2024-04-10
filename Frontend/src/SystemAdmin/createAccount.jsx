@@ -1,4 +1,5 @@
 
+import './createAccount.css'
 import './Form.css'
 import React from 'react';
 import './AccountManagement.css';
@@ -82,17 +83,18 @@ export default function createAccount() {
       
       <div class="formbold-form-wrapper">
 
-      <form onSubmit={handleUserform}>
+      <form onSubmit={handleUserform} class='form-table'>
         <h2>Account info</h2>        
         <div>
-              <label for="email" class="formbold-form-label"  > Full Name </label>
+              <label for="email" class="formbold-form-label full-name" > Full Name </label>
               <input type="text" name='Name' id='Name' placeholder={User.Name} onChange={handleFormChange} />
           </div>
-        <h6>Please enter a unique user id</h6>
+        
         <div class="formbold-input-flex">
           
           <div>
               <label for="email" class="formbold-form-label"  > User ID </label>
+              <h6>Please enter a unique user id</h6>
               <input type="text" name='UserID' id='userid' placeholder={User.UserID} onChange={handleFormChange} />
           </div>
   
@@ -106,8 +108,8 @@ export default function createAccount() {
 
           
         <div class="formbold-mb-3">
-          <label for="age" class="formbold-form-label">User type</label>
-          <select name="" value={User.UserType} id="" onChange={handletypechange}>
+          <label for="age" class="formbold-form-label" >User type</label>
+          <select name="" value={User.UserType} id='' onChange={handletypechange}>
                       <option value="">-- Please select --</option>
                       <option value="Employee">Employee</option>
                       <option value="Manager">Manager</option>

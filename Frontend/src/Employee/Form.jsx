@@ -43,6 +43,7 @@ export default function Form({ token }) {
   };
 
   const handleSubmit = async (e) => {
+ 
     e.preventDefault();
 
     try {
@@ -67,10 +68,11 @@ export default function Form({ token }) {
         formDataToSend
       );
 
+      alert("Claim Submitted Successfully")
+
       // Handle response as needed
     } catch (error) {
-      console.error('Error:', error);
-      // Handle error as needed
+      alert("Claim Could not be submitted, try again later")
     }
   };
 
@@ -101,7 +103,12 @@ export default function Form({ token }) {
                 >
                   <option value="GBP">GBP (£)</option>
                   <option value="USD">USD ($)</option>
-                  <option value="others">Others</option>
+                  <option value="EUR">EUR (€)</option>
+                  <option value="HK$">HK ($)</option>
+                  <option value="SGD">SGD ($)</option>
+                  <option value="AUS">AUS ($)</option>
+                  <option value="NZD">NZD ($)</option>
+                  <option value="CAD">CAD ($)</option>
                 </select>
               </div>
               <div>

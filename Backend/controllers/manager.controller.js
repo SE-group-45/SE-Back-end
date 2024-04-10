@@ -61,8 +61,8 @@ const ApproveClaim = async (req, res) => {
       console.log(randomUser);
       const claimRecord = await Claim.findOneAndUpdate(
         { _id: req.params.dbclaimid },
-        { ClaimState: 'Approved by Manager',FTUaccount: randomUser._id, ManagerComments:req.body.managercomment},
-        { new: true }
+        { ClaimState: 'Approved by Manager',FTUaccount: randomUser._id,Comments:req.body.comments},
+        { new : true}
       );
 
       return res.json({message:'success'});
@@ -83,7 +83,7 @@ const RejectClaim = async (req, res) => {
     if (ValidAccount) {
       const claimRecord = await Claim.findOneAndUpdate(
         { _id: req.params.dbclaimid },
-        { ClaimState: 'Rejected', RejectionReason: req.body.rejectionReason },
+        { ClaimState: 'Rejected', Comments: req.body.comments},
         { new: true }
       );
       res.json(claimRecord);

@@ -36,12 +36,7 @@ const ClaimSchema = mongoose.Schema({
         requires:false,
         default:''
     },
-    ManagerComments:{
-        type: String,
-        required:false,
-        default:''
-    },
-    RejectionReason:{
+    Comments:{
         type: String,
         required:false,
         default:''

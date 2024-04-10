@@ -80,6 +80,10 @@
     margin-bottom: 10px;
   }
 
+  #delete {
+    background-color: crimson;
+  }
+
   .formbold-form-file-flex {
     display: flex;
     align-items: center;
@@ -146,4 +150,16 @@
     border: 2px black; 
   }
 
+
+  @media (max-width: 768px) {
+    
+    .changeAccount-container {
+      flex-direction: column;
+      padding: 24px;
+      width: 100%;
+    }
+
+    
+
+  }
   

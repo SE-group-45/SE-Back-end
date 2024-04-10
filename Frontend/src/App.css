@@ -2,10 +2,14 @@
     background-color:purple;    
     color:white; 
     position: absolute;
-    top:0;
+    top:20;
     right:0;
-    margin:10px;
+    margin: 20px;
+    height: 30px;
+    width: 100px;    
     background: rgb(166,153,243);
+    border-radius: 20px;
     background: linear-gradient(166deg, rgba(166,153,243,1) 0%, rgba(215,50,235,1) 100%);
+    border: none;
 
 }

@@ -59,7 +59,7 @@ const ApproveClaim = async (req, res) => {
             }
             const Updatedclaim = await Claim.findOneAndUpdate(
                 { _id: req.params.claimid },
-                { ClaimState: 'Approved by FTU'},
+                { ClaimState: 'Approved by FTU', Comments:req.body.comments},
                 { new: true }
             );
             res.json(Updatedclaim);
@@ -87,7 +87,7 @@ const RejectClaim = async (req, res) => {
             }
             const claimRecord = await Claim.findOneAndUpdate(
                 { _id: req.params.claimid },
-                { ClaimState: 'Rejected', RejectionReason: req.body.rejectionReason },
+                { ClaimState: 'Rejected', Comments: req.body.comments},
                 { new: true }
             );
             res.json(claimRecord);

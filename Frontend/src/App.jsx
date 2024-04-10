@@ -5,7 +5,7 @@
   import viteLogo from '/vite.svg'
   import './App.css'
   import axios from 'axios';
-  import "./style.css";
+    import "./style.css";
   import TopNav from "./TopNav.jsx";
   import Employee from './Employee/Employee.jsx';
   import Manager from './Manager/Manager.jsx';
@@ -123,6 +123,8 @@
 
   const LoginPage = ({ onLogin}) => {
 
+    const [wrongpass, setwrongpass] = useState()
+
     async function handleinput(event) {
       event.preventDefault();
       const formData = new FormData(event.target);
@@ -136,17 +138,16 @@
         );
   
         const userData = response.data; // Assuming response data contains user information
-        console.log(userData);
+        console.log("Here is the userdata" + userData);
         if (userData.authtoken){
           onLogin(userData)
         }
         else{
-          onLogin(false)
           saveUserObjectToLocalStorage(null)
+          setwrongpass(<div style={{color:'red'}}>Incorrect password or email</div>)
         }
       } catch (error) {
-        onLogin(false)
-        
+        setwrongpass(<div style={{color:'red'}}>Incorrect password or email</div>)
         console.log("Unknown error occurred during login.", error);
       }
     }
@@ -154,27 +155,32 @@
     return (
       <>
       <TopNav/>
-     
-      <div className="formContainer">
-
-        <form className="form" onSubmit={handleinput}>
-          <div className="inputField">
-            <label>Email</label>
-            <input name="email" required />
-          </div>
-          <div className="inputField">
-            <label>Password</label>
-            <input name="password" type="password" required />
-            <a className="forgotPasswordLink" href="/reset-password">
-              Forgot password?
-            </a>
-          </div>
-          <div className="buttonShadow">
-            <div className="inputBackground"></div>
-            <input type="submit" className="loginButton" value="Login" />
-          </div>
-        </form>
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+      <div class="center">    
+         <div class="container">   
+            <div class="text">
+               Worker Portal
+            </div>
+            <form onSubmit={handleinput}>
+               <div class="data">
+                  <label>Company Email</label>
+                  <input name="email" required />
+               </div>
+               <div class="data">
+                  <label>Password</label>
+                  <input name="password" type="password" required />
+               </div>
+               <div class="btn">
+                  <div class="inner"></div>
+                  <button type="submit" value="Login">Sign in</button>
+              
+               </div>
+            </form>
+            {wrongpass} 
+         </div>
       </div>
+
 
       
       </>

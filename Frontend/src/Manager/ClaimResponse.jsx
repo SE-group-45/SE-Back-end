@@ -4,7 +4,9 @@ import { UserContext } from "../App.jsx";
 import axios from "axios";
 import cross from './assets/cross.png';
 
-export default function ClaimResponse({ claimid, claimname, onBlackBoxClick }) {
+export default function ClaimResponse({ claimid, claimname, onBlackBoxClick, imageURL}) {
+
+  console.log(imageURL)
 
   const user=useContext(UserContext)
   console.log(user.token)
@@ -36,7 +38,7 @@ export default function ClaimResponse({ claimid, claimname, onBlackBoxClick }) {
 
   async function rejectclaim(id, reason){
     try {
-      const response = await axios.put(`http://localhost:3000/api/manager/RejectClaim/${user.token}/${claimid}`,{rejectionReason:reason});                
+      const response = await axios.put(`http://localhost:3000/api/manager/RejectClaim/${user.token}/${claimid}`,{comments:reason});                
       console.log(response.data)
       onBlackBoxClick()
     } catch (error) { 
@@ -46,7 +48,7 @@ export default function ClaimResponse({ claimid, claimname, onBlackBoxClick }) {
 
   async function acceptclaim(id, reason){
     try {
-      const response = await axios.put(`http://localhost:3000/api/manager/ApproveClaim/${user.token}/${claimid}`,{rejectionReason:reason});                  
+      const response = await axios.put(`http://localhost:3000/api/manager/ApproveClaim/${user.token}/${claimid}`,{comments:reason});                  
       console.log(response.data)
       onBlackBoxClick()
     } catch (error) { 
@@ -68,7 +70,14 @@ const handleBlackBoxClick = () => {
       </div>
       <div className="FormContainer">
         <form onSubmit={handleSubmit} action="/submit-response" method="POST">
-          <h2>Your Response to {claimname} #{claimid}</h2>
+          <h2>Your Response to #{claimid}</h2>
+          <br></br>
+          <h3>Claim Image</h3>
+          <br></br>
+          <img src={imageURL}></img>
+          <h3>Claim Description</h3>
+          <p>{claimname}</p>
+          <br></br>
           <div className="FormElement">
             <label htmlFor="claimResponse" className="FormLabel">Please Accept or Reject Claim</label>
             <select id="claimResponse" className="FormInput" value={claimResponse} onChange={handleClaimResponseChange}>
@@ -77,7 +86,7 @@ const handleBlackBoxClick = () => {
             </select>
           </div>
           <div className="FormElement">
-            <label htmlFor="explanation" className="FormLabel">Brief Explanation for Claim</label>
+            <label htmlFor="explanation" className="FormLabel">Additonal Comments</label>
             <textarea id="explanation" className="FormInput" placeholder='Type here...' rows="4" value={explanation} onChange={handleExplanationChange}></textarea>
           </div>
           <button type="submit" className="FormButton">Submit</button>
