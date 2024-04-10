@@ -36,7 +36,7 @@ export default function ClaimResponse({ claimid, claimname, onBlackBoxClick }) {
 
   async function rejectclaim(id, reason){
     try {
-      const response = await axios.put(`http://localhost:3000/api/financeteamuser/reject/${claimid}/${user.token}`,{rejectionReason:reason});                
+      const response = await axios.put(`http://localhost:3000/api/financeteamuser/reject/${id}/${user.token}`,{rejectionReason:reason});                
       console.log(response.data)
       onBlackBoxClick()
     } catch (error) { 
@@ -46,7 +46,7 @@ export default function ClaimResponse({ claimid, claimname, onBlackBoxClick }) {
 
   async function acceptclaim(id, reason){
     try {
-      const response = await axios.put(`http://localhost:3000/api/financeteamuser/approve/${claimid}/${user.token}`,{rejectionReason:reason});                  
+      const response = await axios.put(`http://localhost:3000/api/financeteamuser/approve/${id}/${user.token}`,{rejectionReason:reason});                  
       console.log(response.data)
       onBlackBoxClick()
     } catch (error) { 

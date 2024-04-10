@@ -123,6 +123,8 @@
 
   const LoginPage = ({ onLogin}) => {
 
+    const [wrongpass, setwrongpass] = useState()
+
     async function handleinput(event) {
       event.preventDefault();
       const formData = new FormData(event.target);
@@ -136,17 +138,16 @@
         );
   
         const userData = response.data; // Assuming response data contains user information
-        console.log(userData);
+        console.log("Here is the userdata" + userData);
         if (userData.authtoken){
           onLogin(userData)
         }
         else{
-          onLogin(false)
           saveUserObjectToLocalStorage(null)
+          setwrongpass(<div style={{color:'red'}}>Incorrect password or email</div>)
         }
       } catch (error) {
-        onLogin(false)
-        
+        setwrongpass(<div style={{color:'red'}}>Incorrect password or email</div>)
         console.log("Unknown error occurred during login.", error);
       }
     }
@@ -173,9 +174,10 @@
                <div class="btn">
                   <div class="inner"></div>
                   <button type="submit" value="Login">Sign in</button>
+              
                </div>
-               
             </form>
+            {wrongpass} 
          </div>
       </div>
 

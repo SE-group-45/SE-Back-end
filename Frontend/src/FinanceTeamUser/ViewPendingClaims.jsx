@@ -20,7 +20,7 @@ export default function ViewPendingClaims() {
     async function fetchData() {
       try {
 
-        const response = await axios.get(`http://localhost:3000/api/financeteamuser/getclaims/${user.token}`);         
+        const response = await axios.get(`http://localhost:3000/api/financeteamuser/getpendingclaims/${user.token}`);         
         console.log(response.data)
       
         for (const item of response.data) {
